@@ -1,0 +1,98 @@
+:root {
+  --font-size: 16px;
+  /* iOS-Inspired Light Color Palette */
+  --login-background: #e6edff;
+  --text-1x3: 1.875rem;  /* 30px */
+  --background: #ffffff;
+  --foreground: #1c1c1e;
+  --card: #ffffff;
+  --card-foreground: #1c1c1e;
+  --popover: #ffffff;
+  --popover-foreground: #1c1c1e;
+  --primary: #0a84ff;
+  --primary-foreground: #ffffff;
+  --secondary: #34c759;
+  --secondary-foreground: #ffffff;
+  --muted: #f2f2f7;
+  --muted-foreground: #8e8e93;
+  --accent: #ff9500;
+  --accent-foreground: #ffffff;
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+  --border: rgba(28, 28, 30, 0.12);
+  --input: transparent;
+  --input-background: #f2f2f7;
+  --switch-background: #e5e5ea;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #0a84ff;
+  --chart-1: #0a84ff;
+  --chart-2: #34c759;
+  --chart-3: #ff9500;
+  --chart-4: #ff3b30;
+  --chart-5: #af52de;
+  --radius: 0.625rem;
+  --sidebar: #f9f9f9;
+  --sidebar-foreground: #1c1c1e;
+  --sidebar-primary: #0a84ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f2f2f7;
+  --sidebar-accent-foreground: #1c1c1e;
+  --sidebar-border: rgba(28, 28, 30, 0.08);
+  --sidebar-ring: #0a84ff;
+}
+
+.dark {
+  /* Custom Dark Theme Color Palette */
+  --background: #1e1e2f;
+  --foreground: #ecf0f1;
+  --card: #252540;
+  --card-foreground: #ecf0f1;
+  --popover: #252540;
+  --popover-foreground: #ecf0f1;
+  --primary: #2d9cdb;
+  --primary-foreground: #1e1e2f;
+  --secondary: #34495e;
+  --secondary-foreground: #ecf0f1;
+  --muted: #34495e;
+  --muted-foreground: #bdc3c7;
+  --accent: #27ae60;
+  --accent-foreground: #1e1e2f;
+  --destructive: #e74c3c;
+  --destructive-foreground: #ecf0f1;
+  --border: rgba(236, 240, 241, 0.15);
+  --input: transparent;
+  --input-background: #34495e;
+  --switch-background: #34495e;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #2d9cdb;
+  --chart-1: #2d9cdb;
+  --chart-2: #27ae60;
+  --chart-3: #f39c12;
+  --chart-4: #e74c3c;
+  --chart-5: #9b59b6;
+  --sidebar: #1e1e2f;
+  --sidebar-foreground: #ecf0f1;
+  --sidebar-primary: #2d9cdb;
+  --sidebar-primary-foreground: #1e1e2f;
+  --sidebar-accent: #252540;
+  --sidebar-accent-foreground: #ecf0f1;
+  --sidebar-border: rgba(236, 240, 241, 0.1);
+  --sidebar-ring: #2d9cdb;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-color: var(--border);
+  outline-color: var(--ring);
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+

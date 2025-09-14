@@ -1,0 +1,114 @@
+@import url('./global.css');
+
+:root {
+  --login-background: #e6edff;
+  --foreground: #1c1c1e;
+}
+
+body {
+  background-color: var(--login-background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-box {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow:   
+    0 4px 12px hsla(0, 0%, 0%, 0.12) /* ظل الضوء المحيط */ , 
+    0 14px 24px hsla(0, 0%, 0%, 0.16) /* ظل الضوء المباشر */ ;
+  box-shadow:  0 20px 25px -5px  #0000001a, 0 8px 10px -6px  #0000001a;
+}
+
+.login-box h1 {
+  font-size: var(--text-1x3);
+  font-weight: var(--font-weight-medium);
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.login-box .subtitle {
+  color: var(--muted-foreground);
+  margin-bottom: 1.5rem;
+}
+
+.tab-container {
+  display: flex;
+  gap: 2px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: var(--muted);
+  border-radius:14px;
+  padding: 3px;
+}
+
+.tab {
+  background: var(--input-background);
+  color: var(--foreground);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  width:100%;
+}
+
+.tab.active {
+  background: white;
+  color: var(--foreground);
+}
+
+.login-form .input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.login-form label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--muted-foreground);
+  margin-bottom: 0.5rem;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--input-background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+}
+
+.submit-btn {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: var(--primary-foreground);
+  color: var(--primary);
+}
