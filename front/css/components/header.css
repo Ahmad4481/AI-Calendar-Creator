@@ -1,0 +1,121 @@
+/* Dashboard Header */
+.dashboard-header {
+  padding: var(--space-5) var(--space-6);
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.header-left h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-medium);
+  margin: 0 0 0.25rem 0;
+}
+
+.header-left p {
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: var(--space-3) var(--space-4) var(--space-3) 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--input-background);
+  color: var(--foreground);
+  font-size: var(--text-sm);
+  width: 300px;
+  transition: border-color var(--transition-normal);
+}
+
+.search-box input:focus {
+  border-color: var(--ring);
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  right: var(--space-3);
+  color: var(--muted-foreground);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.theme-toggle:hover {
+  background-color: var(--muted);
+}
+
+.theme-icon {
+  font-size: 1.25rem;
+}
+
+.notification-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.notification-btn:hover {
+  background-color: var(--muted);
+}
+
+.notification-badge {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+  font-size: var(--text-sm);
+  padding: 0.125rem var(--space-2);
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: var(--space-4);
+  }
+  
+  .search-box input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-right {
+    flex-wrap: wrap;
+  }
+  
+  .search-box input {
+    width: 150px;
+  }
+}

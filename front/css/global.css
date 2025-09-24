@@ -40,6 +40,28 @@
   --sidebar-accent-foreground: #1c1c1e;
   --sidebar-border: rgba(28, 28, 30, 0.08);
   --sidebar-ring: #0a84ff;
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  /* Font sizes */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  /* Shadows */
+  --shadow-1: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.3);
+  /* Layout */
+  --container-md: 800px;
 }
 
 .dark {
@@ -93,6 +115,11 @@
 
 html {
   font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 
