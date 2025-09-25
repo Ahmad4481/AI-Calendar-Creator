@@ -1,31 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A brief description of the webpage for SEO purposes.">
+  <meta name="description" content="لوحة تحكم منشئ التقويم الذكي">
   <link rel="stylesheet" href="../css/global.css">
-  <link rel="stylesheet" href="../css/login.css">
-  <title>Calendar Builder</title>
+  <link rel="stylesheet" href="../css/components/sidebar.css">
+  <link rel="stylesheet" href="../css/components/layout.css">
+  <link rel="stylesheet" href="../css/components/stats.css">
+  <link rel="stylesheet" href="../css/components/header.css">
+  <link rel="stylesheet" href="../css/components/widgets.css">
+
+  <title>لوحة التحكم - منشئ التقويم</title>
 </head>
 
 <body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">📅</div>
+          <h2>منشئ التقويم</h2>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
-  <div class="login-box">
-    <h1>Calendar Builder</h1>
-    <p class="subtitle">Create and manage your personalized calendar</p>
-    <div class="tab-container">
-      <button class="tab active">Login</button>
-      <button class="tab">Register</button>
-    </div>
-    <form class="login-form" action="">
-      
-    </form>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item active">
+            <a href="#" class="nav-link">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-text">الرئيسية</span>
+            </a>
+          </li>
+          <li class="nav-item">
+              <a href="calendar.html" class="nav-link">
+                <span class="nav-icon">📅</span>
+                <span class="nav-text">التقويم</span>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="nav-icon">➕</span>
+              <span class="nav-text">إنشاء حدث</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">الإحصائيات</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="nav-icon">⚙️</span>
+              <span class="nav-text">الإعدادات</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">
+            <img src="https://via.placeholder.com/40" alt="صورة المستخدم">
+          </div>
+          <div class="user-info">
+            <div class="user-name">أحمد محمد</div>
+            <div class="user-email">ahmed@example.com</div>
+          </div>
+        </div>
+        <button class="logout-btn">
+          <span class="nav-icon">🚪</span>
+          <span class="nav-text">تسجيل الخروج</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="header-left">
+          <h1 class="page-title">لوحة التحكم</h1>
+          <p class="page-subtitle">مرحباً بك في منشئ التقويم الذكي</p>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="البحث في الأحداث...">
+            <span class="search-icon">🔍</span>
+          </div>
+          <button class="theme-toggle" id="themeToggle">
+            <span class="theme-icon">🌙</span>
+          </button>
+          <div class="notifications">
+            <button class="notification-btn">
+              <span class="nav-icon">🔔</span>
+              <span class="notification-badge">3</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard-content">
+        <!-- Quick Stats -->
+        <section class="stats-section">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">📅</div>
+              <div class="stat-content">
+                <div class="stat-number">24</div>
+                <div class="stat-label">أحداث هذا الشهر</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⏰</div>
+              <div class="stat-content">
+                <div class="stat-number">8</div>
+                <div class="stat-label">أحداث اليوم</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">✅</div>
+              <div class="stat-content">
+                <div class="stat-number">156</div>
+                <div class="stat-label">أحداث مكتملة</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📈</div>
+              <div class="stat-content">
+                <div class="stat-number">89%</div>
+                <div class="stat-label">معدل الإنجاز</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Calendar Widget -->
+          <div class="widget calendar-widget">
+            <div class="widget-header">
+              <h3>التقويم</h3>
+              <div class="widget-actions">
+                <button class="widget-btn">اليوم</button>
+                <button class="widget-btn active">الشهر</button>
+                <button class="widget-btn">السنة</button>
+              </div>
+            </div>
+            <div class="widget-content">
+              <div class="calendar-header">
+                <button class="calendar-nav">‹</button>
+                <h4>ديسمبر 2024</h4>
+                <button class="calendar-nav">›</button>
+              </div>
+              <div class="calendar-grid">
+                <div class="calendar-day-header">الأحد</div>
+                <div class="calendar-day-header">الاثنين</div>
+                <div class="calendar-day-header">الثلاثاء</div>
+                <div class="calendar-day-header">الأربعاء</div>
+                <div class="calendar-day-header">الخميس</div>
+                <div class="calendar-day-header">الجمعة</div>
+                <div class="calendar-day-header">السبت</div>
+                
+                <!-- Calendar days will be generated by JavaScript -->
+                <div class="calendar-day">1</div>
+                <div class="calendar-day">2</div>
+                <div class="calendar-day">3</div>
+                <div class="calendar-day">4</div>
+                <div class="calendar-day">5</div>
+                <div class="calendar-day">6</div>
+                <div class="calendar-day">7</div>
+                <div class="calendar-day">8</div>
+                <div class="calendar-day">9</div>
+                <div class="calendar-day">10</div>
+                <div class="calendar-day">11</div>
+                <div class="calendar-day">12</div>
+                <div class="calendar-day">13</div>
+                <div class="calendar-day">14</div>
+                <div class="calendar-day">15</div>
+                <div class="calendar-day">16</div>
+                <div class="calendar-day">17</div>
+                <div class="calendar-day">18</div>
+                <div class="calendar-day">19</div>
+                <div class="calendar-day">20</div>
+                <div class="calendar-day">21</div>
+                <div class="calendar-day">22</div>
+                <div class="calendar-day">23</div>
+                <div class="calendar-day">24</div>
+                <div class="calendar-day">25</div>
+                <div class="calendar-day">26</div>
+                <div class="calendar-day">27</div>
+                <div class="calendar-day">28</div>
+                <div class="calendar-day">29</div>
+                <div class="calendar-day">30</div>
+                <div class="calendar-day">31</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Events -->
+          <div class="widget events-widget">
+            <div class="widget-header">
+              <h3>الأحداث القادمة</h3>
+              <button class="widget-btn">عرض الكل</button>
+            </div>
+            <div class="widget-content">
+              <div class="event-list">
+                <div class="event-item">
+                  <div class="event-time">09:00</div>
+                  <div class="event-details">
+                    <div class="event-title">اجتماع فريق العمل</div>
+                    <div class="event-location">قاعة الاجتماعات</div>
+                  </div>
+                  <div class="event-status urgent"></div>
+                </div>
+                <div class="event-item">
+                  <div class="event-time">14:30</div>
+                  <div class="event-details">
+                    <div class="event-title">عرض تقديمي للعملاء</div>
+                    <div class="event-location">المكتب الرئيسي</div>
+                  </div>
+                  <div class="event-status normal"></div>
+                </div>
+                <div class="event-item">
+                  <div class="event-time">16:00</div>
+                  <div class="event-details">
+                    <div class="event-title">مراجعة المشروع</div>
+                    <div class="event-location">عن بُعد</div>
+                  </div>
+                  <div class="event-status low"></div>
+                </div>
+                <div class="event-item">
+                  <div class="event-time">18:30</div>
+                  <div class="event-details">
+                    <div class="event-title">تدريب الموظفين</div>
+                    <div class="event-location">قاعة التدريب</div>
+                  </div>
+                  <div class="event-status normal"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="widget actions-widget">
+            <div class="widget-header">
+              <h3>إجراءات سريعة</h3>
+            </div>
+            <div class="widget-content">
+              <div class="action-buttons">
+                <button class="action-btn primary">
+                  <span class="action-icon">➕</span>
+                  <span class="action-text">إضافة حدث</span>
+                </button>
+                <button class="action-btn secondary">
+                  <span class="action-icon">📝</span>
+                  <span class="action-text">إنشاء قائمة مهام</span>
+                </button>
+                <button class="action-btn secondary">
+                  <span class="action-icon">📊</span>
+                  <span class="action-text">تقرير شهري</span>
+                </button>
+                <button class="action-btn secondary">
+                  <span class="action-icon">⚙️</span>
+                  <span class="action-text">إعدادات التقويم</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="widget activity-widget">
+            <div class="widget-header">
+              <h3>النشاط الأخير</h3>
+            </div>
+            <div class="widget-content">
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-icon">✅</div>
+                  <div class="activity-content">
+                    <div class="activity-text">تم إكمال حدث "اجتماع فريق العمل"</div>
+                    <div class="activity-time">منذ ساعتين</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">➕</div>
+                  <div class="activity-content">
+                    <div class="activity-text">تم إضافة حدث جديد "عرض تقديمي"</div>
+                    <div class="activity-time">منذ 4 ساعات</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">📝</div>
+                  <div class="activity-content">
+                    <div class="activity-text">تم تحديث قائمة المهام</div>
+                    <div class="activity-time">أمس</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">⚙️</div>
+                  <div class="activity-content">
+                    <div class="activity-text">تم تغيير إعدادات الإشعارات</div>
+                    <div class="activity-time">منذ يومين</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 
-  <script src="../js/index.js"></script>
-
+  <!-- JavaScript Modules -->
+  <script src="../js/auth.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/calendar.js"></script>
+  <script src="../js/actions.js"></script>
+  <script src="../js/dashboard.js"></script>
 </body>
 
 </html>
