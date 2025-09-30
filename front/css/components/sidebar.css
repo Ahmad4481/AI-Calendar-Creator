@@ -18,14 +18,16 @@
   padding: var(--space-5);
   border-bottom: 1px solid var(--sidebar-border);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  width: 280px;
 }
 
 .logo-icon {
@@ -52,7 +54,9 @@
 }
 
 .sidebar-toggle {
+  width: fit-content;
   background: none;
+  outline: none;
   border: none;
   cursor: pointer;
   padding: var(--space-2);
@@ -115,7 +119,7 @@
 }
 
 .nav-item.active .nav-link::before {
-  content: '';
+  content: "";
   position: absolute;
   right: 0;
   top: 0;
@@ -207,21 +211,13 @@
 
 /* Responsive Sidebar */
 @media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  }
   
+
   .sidebar:not(.collapsed) {
-    transform: translateX(0);
+    position: static;
+    z-index: 10;
+    width: 100%;
   }
+
   
-  .main-content {
-    margin-right: 0;
-  }
 }

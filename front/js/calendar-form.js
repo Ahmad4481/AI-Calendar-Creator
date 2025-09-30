@@ -8,9 +8,9 @@ class CalendarFormManager {
       sleepSchedules: [],
       daySettings: {
         weekdays: {},
-        specialDates: []
+        specialDates: [],
       },
-      goals: []
+      goals: [],
     };
     this.init();
   }
@@ -25,20 +25,20 @@ class CalendarFormManager {
   // Bind all form events
   bindEvents() {
     // Modal events
-    const addCalendarBtn = document.getElementById('addCalendarBtn');
-    const closeModal = document.getElementById('closeModal');
-    const modalOverlay = document.getElementById('calendarModal');
+    const addCalendarBtn = document.getElementById("addCalendarBtn");
+    const closeModal = document.getElementById("closeModal");
+    const modalOverlay = document.getElementById("calendarModal");
 
     if (addCalendarBtn) {
-      addCalendarBtn.addEventListener('click', () => this.openModal());
+      addCalendarBtn.addEventListener("click", () => this.openModal());
     }
 
     if (closeModal) {
-      closeModal.addEventListener('click', () => this.closeModal());
+      closeModal.addEventListener("click", () => this.closeModal());
     }
 
     if (modalOverlay) {
-      modalOverlay.addEventListener('click', (e) => {
+      modalOverlay.addEventListener("click", (e) => {
         if (e.target === modalOverlay) {
           this.closeModal();
         }
@@ -46,20 +46,20 @@ class CalendarFormManager {
     }
 
     // Form navigation
-    const prevStepBtn = document.getElementById('prevStep');
-    const nextStepBtn = document.getElementById('nextStep');
-    const submitFormBtn = document.getElementById('submitForm');
+    const prevStepBtn = document.getElementById("prevStep");
+    const nextStepBtn = document.getElementById("nextStep");
+    const submitFormBtn = document.getElementById("submitForm");
 
     if (prevStepBtn) {
-      prevStepBtn.addEventListener('click', () => this.previousStep());
+      prevStepBtn.addEventListener("click", () => this.previousStep());
     }
 
     if (nextStepBtn) {
-      nextStepBtn.addEventListener('click', () => this.nextStep());
+      nextStepBtn.addEventListener("click", () => this.nextStep());
     }
 
     if (submitFormBtn) {
-      submitFormBtn.addEventListener('click', (e) => this.submitForm(e));
+      submitFormBtn.addEventListener("click", (e) => this.submitForm(e));
     }
 
     // Dynamic form elements
@@ -69,21 +69,23 @@ class CalendarFormManager {
   // Bind dynamic form elements
   bindDynamicElements() {
     // Sleep schedules
-    const addSleepScheduleBtn = document.getElementById('addSleepSchedule');
+    const addSleepScheduleBtn = document.getElementById("addSleepSchedule");
     if (addSleepScheduleBtn) {
-      addSleepScheduleBtn.addEventListener('click', () => this.addSleepSchedule());
+      addSleepScheduleBtn.addEventListener("click", () =>
+        this.addSleepSchedule()
+      );
     }
 
     // Special dates
-    const addSpecialDateBtn = document.getElementById('addSpecialDate');
+    const addSpecialDateBtn = document.getElementById("addSpecialDate");
     if (addSpecialDateBtn) {
-      addSpecialDateBtn.addEventListener('click', () => this.addSpecialDate());
+      addSpecialDateBtn.addEventListener("click", () => this.addSpecialDate());
     }
 
     // Goals
-    const addGoalBtn = document.getElementById('addGoal');
+    const addGoalBtn = document.getElementById("addGoal");
     if (addGoalBtn) {
-      addGoalBtn.addEventListener('click', () => this.addGoal());
+      addGoalBtn.addEventListener("click", () => this.addGoal());
     }
 
     // Bind existing remove buttons
@@ -93,46 +95,46 @@ class CalendarFormManager {
   // Bind remove buttons for dynamic elements
   bindRemoveButtons() {
     // Sleep schedule remove buttons
-    document.querySelectorAll('.remove-sleep-schedule').forEach(btn => {
-      btn.addEventListener('click', (e) => this.removeSleepSchedule(e));
+    document.querySelectorAll(".remove-sleep-schedule").forEach((btn) => {
+      btn.addEventListener("click", (e) => this.removeSleepSchedule(e));
     });
 
     // Special date remove buttons
-    document.querySelectorAll('.remove-special-date').forEach(btn => {
-      btn.addEventListener('click', (e) => this.removeSpecialDate(e));
+    document.querySelectorAll(".remove-special-date").forEach((btn) => {
+      btn.addEventListener("click", (e) => this.removeSpecialDate(e));
     });
 
     // Goal remove buttons
-    document.querySelectorAll('.remove-goal').forEach(btn => {
-      btn.addEventListener('click', (e) => this.removeGoal(e));
+    document.querySelectorAll(".remove-goal").forEach((btn) => {
+      btn.addEventListener("click", (e) => this.removeGoal(e));
     });
 
     // Preferred time remove buttons
-    document.querySelectorAll('.remove-preferred-time').forEach(btn => {
-      btn.addEventListener('click', (e) => this.removePreferredTime(e));
+    document.querySelectorAll(".remove-preferred-time").forEach((btn) => {
+      btn.addEventListener("click", (e) => this.removePreferredTime(e));
     });
 
     // Add preferred time buttons
-    document.querySelectorAll('.add-preferred-time').forEach(btn => {
-      btn.addEventListener('click', (e) => this.addPreferredTime(e));
+    document.querySelectorAll(".add-preferred-time").forEach((btn) => {
+      btn.addEventListener("click", (e) => this.addPreferredTime(e));
     });
   }
 
   // Open modal
   openModal() {
-    const modal = document.getElementById('calendarModal');
+    const modal = document.getElementById("calendarModal");
     if (modal) {
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
     }
   }
 
   // Close modal
   closeModal() {
-    const modal = document.getElementById('calendarModal');
+    const modal = document.getElementById("calendarModal");
     if (modal) {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
       this.resetForm();
     }
   }
@@ -145,9 +147,9 @@ class CalendarFormManager {
       sleepSchedules: [],
       daySettings: {
         weekdays: {},
-        specialDates: []
+        specialDates: [],
       },
-      goals: []
+      goals: [],
     };
     this.updateProgress();
     this.updateNavigation();
@@ -180,69 +182,75 @@ class CalendarFormManager {
   // Show specific step
   showStep(step) {
     // Hide all steps
-    document.querySelectorAll('.form-step').forEach(stepEl => {
-      stepEl.classList.remove('active');
+    document.querySelectorAll(".form-step").forEach((stepEl) => {
+      stepEl.classList.remove("active");
     });
 
     // Show current step
-    const currentStepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+    const currentStepEl = document.querySelector(
+      `.form-step[data-step="${step}"]`
+    );
     if (currentStepEl) {
-      currentStepEl.classList.add('active');
+      currentStepEl.classList.add("active");
     }
   }
 
   // Update progress indicator
   updateProgress() {
-    document.querySelectorAll('.progress-step').forEach((stepEl, index) => {
+    document.querySelectorAll(".progress-step").forEach((stepEl, index) => {
       const stepNumber = index + 1;
-      stepEl.classList.remove('active', 'completed');
-      
+      stepEl.classList.remove("active", "completed");
+
       if (stepNumber === this.currentStep) {
-        stepEl.classList.add('active');
+        stepEl.classList.add("active");
       } else if (stepNumber < this.currentStep) {
-        stepEl.classList.add('completed');
+        stepEl.classList.add("completed");
       }
     });
   }
 
   // Update navigation buttons
   updateNavigation() {
-    const prevBtn = document.getElementById('prevStep');
-    const nextBtn = document.getElementById('nextStep');
-    const submitBtn = document.getElementById('submitForm');
+    const prevBtn = document.getElementById("prevStep");
+    const nextBtn = document.getElementById("nextStep");
+    const submitBtn = document.getElementById("submitForm");
 
     if (prevBtn) {
       prevBtn.disabled = this.currentStep === 1;
     }
 
     if (nextBtn) {
-      nextBtn.style.display = this.currentStep === this.totalSteps ? 'none' : 'inline-flex';
+      nextBtn.style.display =
+        this.currentStep === this.totalSteps ? "none" : "inline-flex";
     }
 
     if (submitBtn) {
-      submitBtn.style.display = this.currentStep === this.totalSteps ? 'inline-flex' : 'none';
+      submitBtn.style.display =
+        this.currentStep === this.totalSteps ? "inline-flex" : "none";
     }
   }
 
   // Validate current step
   validateCurrentStep() {
-    const currentStepEl = document.querySelector(`.form-step[data-step="${this.currentStep}"]`);
+    const currentStepEl = document.querySelector(
+      `.form-step[data-step="${this.currentStep}"]`
+    );
     if (!currentStepEl) return false;
 
-    const requiredFields = currentStepEl.querySelectorAll('[required]');
+    const requiredFields = currentStepEl.querySelectorAll("[required]");
     let isValid = true;
 
-    requiredFields.forEach(field => {
+    requiredFields.forEach((field) => {
       if (!field.value.trim()) {
-        field.style.borderColor = 'var(--destructive)';
+        field.style.borderColor = "var(--destructive)";
         isValid = false;
       } else {
-        field.style.borderColor = '';
+        field.style.borderColor = "";
       }
     });
 
     if (!isValid) {
-      this.showMessage('يرجى ملء جميع الحقول المطلوبة', 'error');
+      this.showMessage("يرجى ملء جميع الحقول المطلوبة", "error");
     }
 
     return isValid;
@@ -250,7 +258,9 @@ class CalendarFormManager {
 
   // Save current step data
   saveCurrentStepData() {
-    const currentStepEl = document.querySelector(`.form-step[data-step="${this.currentStep}"]`);
+    const currentStepEl = document.querySelector(
+      `.form-step[data-step="${this.currentStep}"]`
+    );
     if (!currentStepEl) return;
 
     switch (this.currentStep) {
@@ -271,26 +281,26 @@ class CalendarFormManager {
 
   // Save basic info
   saveBasicInfo() {
-    const calendarName = document.getElementById('calendarName').value;
-    const calendarScope = document.getElementById('calendarScope').value;
+    const calendarName = document.getElementById("calendarName").value;
+    const calendarScope = document.getElementById("calendarScope").value;
 
     this.formData.basicInfo = {
       name: calendarName,
-      scope: calendarScope
+      scope: calendarScope,
     };
   }
 
   // Save sleep schedules
   saveSleepSchedules() {
     this.formData.sleepSchedules = [];
-    document.querySelectorAll('.sleep-schedule-item').forEach(item => {
+    document.querySelectorAll(".sleep-schedule-item").forEach((item) => {
       const startTime = item.querySelector('[name="sleepStart"]').value;
       const endTime = item.querySelector('[name="sleepEnd"]').value;
-      
+
       if (startTime && endTime) {
         this.formData.sleepSchedules.push({
           start: startTime,
-          end: endTime
+          end: endTime,
         });
       }
     });
@@ -301,24 +311,24 @@ class CalendarFormManager {
     // Weekdays
     const weekdayStart = document.querySelector('[name="weekdayStart"]').value;
     const weekdayEnd = document.querySelector('[name="weekdayEnd"]').value;
-    
+
     this.formData.daySettings.weekdays = {
       start: weekdayStart,
-      end: weekdayEnd
+      end: weekdayEnd,
     };
 
     // Special dates
     this.formData.daySettings.specialDates = [];
-    document.querySelectorAll('.special-date-item').forEach(item => {
+    document.querySelectorAll(".special-date-item").forEach((item) => {
       const date = item.querySelector('[name="specialDate"]').value;
       const startTime = item.querySelector('[name="specialStart"]').value;
       const endTime = item.querySelector('[name="specialEnd"]').value;
-      
+
       if (date && startTime && endTime) {
         this.formData.daySettings.specialDates.push({
           date: date,
           start: startTime,
-          end: endTime
+          end: endTime,
         });
       }
     });
@@ -327,22 +337,23 @@ class CalendarFormManager {
   // Save goals
   saveGoals() {
     this.formData.goals = [];
-    document.querySelectorAll('.goal-item').forEach(item => {
+    document.querySelectorAll(".goal-item").forEach((item) => {
       const goalName = item.querySelector('[name="goalName"]').value;
       const priority = item.querySelector('[name="goalPriority"]').value;
       const repeat = item.querySelector('[name="goalRepeat"]').value;
-      
+
       if (goalName) {
         const preferredTimes = [];
-        item.querySelectorAll('.preferred-time-item').forEach(timeItem => {
-          const days = Array.from(timeItem.querySelector('[name="preferredDays"]').selectedOptions)
-            .map(option => option.value);
+        item.querySelectorAll(".preferred-time-item").forEach((timeItem) => {
+          const days = Array.from(
+            timeItem.querySelector('[name="preferredDays"]').selectedOptions
+          ).map((option) => option.value);
           const time = timeItem.querySelector('[name="preferredTime"]').value;
-          
+
           if (days.length > 0 && time) {
             preferredTimes.push({
               days: days,
-              time: time
+              time: time,
             });
           }
         });
@@ -351,7 +362,7 @@ class CalendarFormManager {
           name: goalName,
           priority: priority,
           repeat: repeat,
-          preferredTimes: preferredTimes
+          preferredTimes: preferredTimes,
         });
       }
     });
@@ -359,9 +370,9 @@ class CalendarFormManager {
 
   // Add sleep schedule
   addSleepSchedule() {
-    const container = document.getElementById('sleepSchedules');
-    const newItem = document.createElement('div');
-    newItem.className = 'sleep-schedule-item';
+    const container = document.getElementById("sleepSchedules");
+    const newItem = document.createElement("div");
+    newItem.className = "sleep-schedule-item";
     newItem.innerHTML = `
       <div class="form-row">
         <div class="form-group">
@@ -377,26 +388,26 @@ class CalendarFormManager {
         </div>
       </div>
     `;
-    
+
     container.appendChild(newItem);
     this.bindRemoveButtons();
   }
 
   // Remove sleep schedule
   removeSleepSchedule(event) {
-    const container = document.getElementById('sleepSchedules');
+    const container = document.getElementById("sleepSchedules");
     if (container.children.length > 1) {
-      event.target.closest('.sleep-schedule-item').remove();
+      event.target.closest(".sleep-schedule-item").remove();
     } else {
-      this.showMessage('يجب أن يكون هناك على الأقل جدول نوم واحد', 'error');
+      this.showMessage("يجب أن يكون هناك على الأقل جدول نوم واحد", "error");
     }
   }
 
   // Add special date
   addSpecialDate() {
-    const container = document.getElementById('specialDates');
-    const newItem = document.createElement('div');
-    newItem.className = 'special-date-item';
+    const container = document.getElementById("specialDates");
+    const newItem = document.createElement("div");
+    newItem.className = "special-date-item";
     newItem.innerHTML = `
       <div class="form-row">
         <div class="form-group">
@@ -416,21 +427,21 @@ class CalendarFormManager {
         </div>
       </div>
     `;
-    
+
     container.appendChild(newItem);
     this.bindRemoveButtons();
   }
 
   // Remove special date
   removeSpecialDate(event) {
-    event.target.closest('.special-date-item').remove();
+    event.target.closest(".special-date-item").remove();
   }
 
   // Add goal
   addGoal() {
-    const container = document.getElementById('goals');
-    const newItem = document.createElement('div');
-    newItem.className = 'goal-item';
+    const container = document.getElementById("goals");
+    const newItem = document.createElement("div");
+    newItem.className = "goal-item";
     newItem.innerHTML = `
       <div class="form-group">
         <label>اسم الهدف</label>
@@ -490,27 +501,27 @@ class CalendarFormManager {
         <button type="button" class="btn btn-danger remove-goal">حذف الهدف</button>
       </div>
     `;
-    
+
     container.appendChild(newItem);
     this.bindRemoveButtons();
   }
 
   // Remove goal
   removeGoal(event) {
-    const container = document.getElementById('goals');
+    const container = document.getElementById("goals");
     if (container.children.length > 1) {
-      event.target.closest('.goal-item').remove();
+      event.target.closest(".goal-item").remove();
     } else {
-      this.showMessage('يجب أن يكون هناك على الأقل هدف واحد', 'error');
+      this.showMessage("يجب أن يكون هناك على الأقل هدف واحد", "error");
     }
   }
 
   // Add preferred time
   addPreferredTime(event) {
-    const goalItem = event.target.closest('.goal-item');
-    const preferredTimes = goalItem.querySelector('.preferred-times');
-    const newItem = document.createElement('div');
-    newItem.className = 'preferred-time-item';
+    const goalItem = event.target.closest(".goal-item");
+    const preferredTimes = goalItem.querySelector(".preferred-times");
+    const newItem = document.createElement("div");
+    newItem.className = "preferred-time-item";
     newItem.innerHTML = `
       <div class="form-row">
         <div class="form-group">
@@ -534,78 +545,80 @@ class CalendarFormManager {
         </div>
       </div>
     `;
-    
-    const addBtn = preferredTimes.querySelector('.add-preferred-time');
+
+    const addBtn = preferredTimes.querySelector(".add-preferred-time");
     preferredTimes.insertBefore(newItem, addBtn);
     this.bindRemoveButtons();
   }
 
   // Remove preferred time
   removePreferredTime(event) {
-    const goalItem = event.target.closest('.goal-item');
-    const preferredTimes = goalItem.querySelectorAll('.preferred-time-item');
+    const goalItem = event.target.closest(".goal-item");
+    const preferredTimes = goalItem.querySelectorAll(".preferred-time-item");
     if (preferredTimes.length > 1) {
-      event.target.closest('.preferred-time-item').remove();
+      event.target.closest(".preferred-time-item").remove();
     } else {
-      this.showMessage('يجب أن يكون هناك على الأقل وقت مفضل واحد', 'error');
+      this.showMessage("يجب أن يكون هناك على الأقل وقت مفضل واحد", "error");
     }
   }
 
   // Submit form
   submitForm(event) {
     event.preventDefault();
-    
+
     if (this.validateCurrentStep()) {
       this.saveCurrentStepData();
-      
+
       // Save calendar to localStorage
       this.saveCalendar();
-      
-      this.showMessage('تم إنشاء التقويم بنجاح!', 'success');
-      
+
+      this.showMessage("تم إنشاء التقويم بنجاح!", "success");
+
       setTimeout(() => {
         this.closeModal();
-        this.refreshCalendarList();
+        const calendarPageManager = new CalendarPageManager();
+        calendarPageManager.loadCalendars();
       }, 1500);
     }
   }
 
   // Save calendar to localStorage
   saveCalendar() {
-    const calendars = JSON.parse(localStorage.getItem('calendars') || '[]');
+    const calendars = JSON.parse(localStorage.getItem("calendars") || "[]");
     const newCalendar = {
       id: Date.now(),
       ...this.formData.basicInfo,
       sleepSchedules: this.formData.sleepSchedules,
       daySettings: this.formData.daySettings,
       goals: this.formData.goals,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
-    
+
     calendars.push(newCalendar);
-    localStorage.setItem('calendars', JSON.stringify(calendars));
+    localStorage.setItem("calendars", JSON.stringify(calendars));
   }
 
   // Refresh calendar list
   refreshCalendarList() {
     // Reload the page to show new calendar
-    window.location.reload();
+    new (calendarPageManager).initializePage();
   }
 
   // Load calendar data for editing
   loadCalendarData(calendar) {
+    console.log("load calendar date");
     // Load basic info
-    document.getElementById('calendarName').value = calendar.name || '';
-    document.getElementById('calendarScope').value = calendar.scope || '';
+    document.getElementById("calendarName").value = calendar.name || "";
+    document.getElementById("calendarScope").value = calendar.scope || "";
 
     // Load sleep schedules
-    const sleepContainer = document.getElementById('sleepSchedules');
-    sleepContainer.innerHTML = '';
-    
+    const sleepContainer = document.getElementById("sleepSchedules");
+    sleepContainer.innerHTML = "";
+
     if (calendar.sleepSchedules && calendar.sleepSchedules.length > 0) {
-      calendar.sleepSchedules.forEach(schedule => {
-        const newItem = document.createElement('div');
-        newItem.className = 'sleep-schedule-item';
+      calendar.sleepSchedules.forEach((schedule) => {
+        const newItem = document.createElement("div");
+        newItem.className = "sleep-schedule-item";
         newItem.innerHTML = `
           <div class="form-row">
             <div class="form-group">
@@ -630,18 +643,24 @@ class CalendarFormManager {
 
     // Load day settings
     if (calendar.daySettings && calendar.daySettings.weekdays) {
-      document.querySelector('[name="weekdayStart"]').value = calendar.daySettings.weekdays.start || '';
-      document.querySelector('[name="weekdayEnd"]').value = calendar.daySettings.weekdays.end || '';
+      document.querySelector('[name="weekdayStart"]').value =
+        calendar.daySettings.weekdays.start || "";
+      document.querySelector('[name="weekdayEnd"]').value =
+        calendar.daySettings.weekdays.end || "";
     }
 
     // Load special dates
-    const specialDatesContainer = document.getElementById('specialDates');
-    specialDatesContainer.innerHTML = '';
-    
-    if (calendar.daySettings && calendar.daySettings.specialDates && calendar.daySettings.specialDates.length > 0) {
-      calendar.daySettings.specialDates.forEach(specialDate => {
-        const newItem = document.createElement('div');
-        newItem.className = 'special-date-item';
+    const specialDatesContainer = document.getElementById("specialDates");
+    specialDatesContainer.innerHTML = "";
+
+    if (
+      calendar.daySettings &&
+      calendar.daySettings.specialDates &&
+      calendar.daySettings.specialDates.length > 0
+    ) {
+      calendar.daySettings.specialDates.forEach((specialDate) => {
+        const newItem = document.createElement("div");
+        newItem.className = "special-date-item";
         newItem.innerHTML = `
           <div class="form-row">
             <div class="form-group">
@@ -666,21 +685,26 @@ class CalendarFormManager {
     }
 
     // Load goals
-    const goalsContainer = document.getElementById('goals');
-    goalsContainer.innerHTML = '';
-    
+    const goalsContainer = document.getElementById("goals");
+    goalsContainer.innerHTML = "";
+
     if (calendar.goals && calendar.goals.length > 0) {
-      calendar.goals.forEach(goal => {
-        const newItem = document.createElement('div');
-        newItem.className = 'goal-item';
-        
-        let preferredTimesHtml = '';
+      calendar.goals.forEach((goal) => {
+        const newItem = document.createElement("div");
+        newItem.className = "goal-item";
+
+        let preferredTimesHtml = "";
         if (goal.preferredTimes && goal.preferredTimes.length > 0) {
           goal.preferredTimes.forEach((prefTime, index) => {
-            const selectedDays = prefTime.days.map(day => 
-              `<option value="${day}" selected>${this.getDayName(day)}</option>`
-            ).join('');
-            
+            const selectedDays = prefTime.days
+              .map(
+                (day) =>
+                  `<option value="${day}" selected>${this.getDayName(
+                    day
+                  )}</option>`
+              )
+              .join("");
+
             preferredTimesHtml += `
               <div class="preferred-time-item">
                 <div class="form-row">
@@ -738,14 +762,22 @@ class CalendarFormManager {
         newItem.innerHTML = `
           <div class="form-group">
             <label>اسم الهدف</label>
-            <input type="text" name="goalName" placeholder="أدخل اسم الهدف" value="${goal.name}">
+            <input type="text" name="goalName" placeholder="أدخل اسم الهدف" value="${
+              goal.name
+            }">
           </div>
           <div class="form-group">
             <label>الأولوية</label>
             <select name="goalPriority">
-              <option value="high" ${goal.priority === 'high' ? 'selected' : ''}>عالي</option>
-              <option value="medium" ${goal.priority === 'medium' ? 'selected' : ''}>متوسط</option>
-              <option value="low" ${goal.priority === 'low' ? 'selected' : ''}>منخفض</option>
+              <option value="high" ${
+                goal.priority === "high" ? "selected" : ""
+              }>عالي</option>
+              <option value="medium" ${
+                goal.priority === "medium" ? "selected" : ""
+              }>متوسط</option>
+              <option value="low" ${
+                goal.priority === "low" ? "selected" : ""
+              }>منخفض</option>
             </select>
           </div>
           
@@ -761,10 +793,18 @@ class CalendarFormManager {
           <div class="form-group">
             <label>تكرار الهدف</label>
             <select name="goalRepeat">
-              <option value="daily" ${goal.repeat === 'daily' ? 'selected' : ''}>يومي</option>
-              <option value="weekly" ${goal.repeat === 'weekly' ? 'selected' : ''}>أسبوعي</option>
-              <option value="monthly" ${goal.repeat === 'monthly' ? 'selected' : ''}>شهري</option>
-              <option value="custom" ${goal.repeat === 'custom' ? 'selected' : ''}>مخصص</option>
+              <option value="daily" ${
+                goal.repeat === "daily" ? "selected" : ""
+              }>يومي</option>
+              <option value="weekly" ${
+                goal.repeat === "weekly" ? "selected" : ""
+              }>أسبوعي</option>
+              <option value="monthly" ${
+                goal.repeat === "monthly" ? "selected" : ""
+              }>شهري</option>
+              <option value="custom" ${
+                goal.repeat === "custom" ? "selected" : ""
+              }>مخصص</option>
             </select>
           </div>
 
@@ -786,13 +826,13 @@ class CalendarFormManager {
   // Get day name in Arabic
   getDayName(dayValue) {
     const dayNames = {
-      'sunday': 'الأحد',
-      'monday': 'الاثنين',
-      'tuesday': 'الثلاثاء',
-      'wednesday': 'الأربعاء',
-      'thursday': 'الخميس',
-      'friday': 'الجمعة',
-      'saturday': 'السبت'
+      sunday: "الأحد",
+      monday: "الاثنين",
+      tuesday: "الثلاثاء",
+      wednesday: "الأربعاء",
+      thursday: "الخميس",
+      friday: "الجمعة",
+      saturday: "السبت",
     };
     return dayNames[dayValue] || dayValue;
   }
@@ -800,16 +840,16 @@ class CalendarFormManager {
   // Show message
   showMessage(message, type) {
     // Remove existing messages
-    const existingMessage = document.querySelector('.form-message');
+    const existingMessage = document.querySelector(".form-message");
     if (existingMessage) {
       existingMessage.remove();
     }
-    
+
     // Create message element
-    const messageEl = document.createElement('div');
+    const messageEl = document.createElement("div");
     messageEl.className = `form-message message-${type}`;
     messageEl.textContent = message;
-    
+
     // Add styles
     messageEl.style.cssText = `
       position: fixed;
@@ -824,19 +864,19 @@ class CalendarFormManager {
       max-width: 400px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     `;
-    
-    if (type === 'success') {
-      messageEl.style.backgroundColor = 'var(--secondary)';
-    } else if (type === 'error') {
-      messageEl.style.backgroundColor = 'var(--destructive)';
+
+    if (type === "success") {
+      messageEl.style.backgroundColor = "var(--secondary)";
+    } else if (type === "error") {
+      messageEl.style.backgroundColor = "var(--destructive)";
     }
-    
+
     // Add to page
     document.body.appendChild(messageEl);
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
-      messageEl.style.animation = 'slideOut 0.3s ease';
+      messageEl.style.animation = "slideOut 0.3s ease";
       setTimeout(() => {
         if (messageEl.parentNode) {
           messageEl.remove();
@@ -854,8 +894,8 @@ class CalendarPageManager {
 
   init() {
     // Wait for DOM to be ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
         this.initializePage();
       });
     } else {
@@ -864,14 +904,6 @@ class CalendarPageManager {
   }
 
   initializePage() {
-    // Check authentication
-    if (!window.authManager.checkAuthStatus()) {
-      return;
-    }
-
-    // Update user info
-    window.authManager.updateUserInfo();
-
     // Load existing calendars
     this.loadCalendars();
 
@@ -881,17 +913,17 @@ class CalendarPageManager {
 
   // Load existing calendars from localStorage
   loadCalendars() {
-    const calendars = JSON.parse(localStorage.getItem('calendars') || '[]');
-    const calendarGrid = document.querySelector('.calendar-grid');
-    
+    const calendars = JSON.parse(localStorage.getItem("calendars") || "[]");
+    const calendarGrid = document.querySelector(".calendar-grid");
+
     if (!calendarGrid) return;
 
     // Clear existing cards (except the first two demo cards)
-    const existingCards = calendarGrid.querySelectorAll('.calendar-card');
-    existingCards.forEach(card => card.remove());
+    const existingCards = calendarGrid.querySelectorAll(".calendar-card");
+    existingCards.forEach((card) => card.remove());
 
     // Add loaded calendars
-    calendars.forEach(calendar => {
+    calendars.forEach((calendar) => {
       const calendarCard = this.createCalendarCard(calendar);
       calendarGrid.appendChild(calendarCard);
     });
@@ -899,15 +931,16 @@ class CalendarPageManager {
 
   // Create calendar card element
   createCalendarCard(calendar) {
-    const card = document.createElement('div');
-    card.className = 'calendar-card';
-    
-    const scopeText = {
-      'daily': 'يومي',
-      'weekly': 'أسبوعي',
-      'monthly': 'شهري',
-      'yearly': 'سنوي'
-    }[calendar.scope] || calendar.scope;
+    const card = document.createElement("div");
+    card.className = "calendar-card";
+
+    const scopeText =
+      {
+        daily: "يومي",
+        weekly: "أسبوعي",
+        monthly: "شهري",
+        yearly: "سنوي",
+      }[calendar.scope] || calendar.scope;
 
     const goalsCount = calendar.goals ? calendar.goals.length : 0;
     const createdAt = new Date(calendar.createdAt);
@@ -944,13 +977,13 @@ class CalendarPageManager {
   getTimeAgo(date) {
     const now = new Date();
     const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
-    
+
     if (diffInHours < 1) {
-      return 'الآن';
+      return "الآن";
     } else if (diffInHours < 24) {
       return `منذ ${diffInHours} ساعة`;
     } else if (diffInHours < 48) {
-      return 'أمس';
+      return "أمس";
     } else {
       const diffInDays = Math.floor(diffInHours / 24);
       return `منذ ${diffInDays} يوم`;
@@ -959,9 +992,9 @@ class CalendarPageManager {
 
   // Edit calendar
   editCalendar(calendarId) {
-    const calendars = JSON.parse(localStorage.getItem('calendars') || '[]');
-    const calendar = calendars.find(cal => cal.id === calendarId);
-    
+    const calendars = JSON.parse(localStorage.getItem("calendars") || "[]");
+    const calendar = calendars.find((cal) => cal.id === calendarId);
+
     if (calendar) {
       // Open modal and populate with calendar data
       this.formManager.openModal();
@@ -971,31 +1004,33 @@ class CalendarPageManager {
 
   // Delete calendar
   deleteCalendar(calendarId) {
-    if (confirm('هل أنت متأكد من حذف هذا التقويم؟')) {
-      const calendars = JSON.parse(localStorage.getItem('calendars') || '[]');
-      const filteredCalendars = calendars.filter(cal => cal.id !== calendarId);
-      localStorage.setItem('calendars', JSON.stringify(filteredCalendars));
-      
+    if (confirm("هل أنت متأكد من حذف هذا التقويم؟")) {
+      const calendars = JSON.parse(localStorage.getItem("calendars") || "[]");
+      const filteredCalendars = calendars.filter(
+        (cal) => cal.id !== calendarId
+      );
+      localStorage.setItem("calendars", JSON.stringify(filteredCalendars));
+
       // Reload calendar list
       this.loadCalendars();
-      
-      this.showMessage('تم حذف التقويم بنجاح', 'success');
+
+      this.showMessage("تم حذف التقويم بنجاح", "success");
     }
   }
 
   // Show message
   showMessage(message, type) {
     // Remove existing messages
-    const existingMessage = document.querySelector('.page-message');
+    const existingMessage = document.querySelector(".page-message");
     if (existingMessage) {
       existingMessage.remove();
     }
-    
+
     // Create message element
-    const messageEl = document.createElement('div');
+    const messageEl = document.createElement("div");
     messageEl.className = `page-message message-${type}`;
     messageEl.textContent = message;
-    
+
     // Add styles
     messageEl.style.cssText = `
       position: fixed;
@@ -1010,19 +1045,19 @@ class CalendarPageManager {
       max-width: 400px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     `;
-    
-    if (type === 'success') {
-      messageEl.style.backgroundColor = 'var(--secondary)';
-    } else if (type === 'error') {
-      messageEl.style.backgroundColor = 'var(--destructive)';
+
+    if (type === "success") {
+      messageEl.style.backgroundColor = "var(--secondary)";
+    } else if (type === "error") {
+      messageEl.style.backgroundColor = "var(--destructive)";
     }
-    
+
     // Add to page
     document.body.appendChild(messageEl);
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
-      messageEl.style.animation = 'slideOut 0.3s ease';
+      messageEl.style.animation = "slideOut 0.3s ease";
       setTimeout(() => {
         if (messageEl.parentNode) {
           messageEl.remove();

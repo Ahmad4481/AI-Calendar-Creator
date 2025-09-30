@@ -18,27 +18,21 @@
 <body>
   <div class="dashboard-container">
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar collapsed">
       <div class="sidebar-header">
-        <div class="logo">
-          <div class="logo-icon">📅</div>
-          <h2>منشئ التقويم</h2>
-        </div>
         <button class="sidebar-toggle" id="sidebarToggle">
           <span></span>
           <span></span>
           <span></span>
         </button>
+        <div class="logo">
+          <div class="logo-icon">📅</div>
+          <h2>منشئ التقويم</h2>
+        </div>
       </div>
 
       <nav class="sidebar-nav">
         <ul class="nav-list">
-          <li class="nav-item">
-            <a href="dashborad.html" class="nav-link">
-              <span class="nav-icon">🏠</span>
-              <span class="nav-text">الرئيسية</span>
-            </a>
-          </li>
           <li class="nav-item active">
             <a href="#" class="nav-link">
               <span class="nav-icon">📅</span>
@@ -46,21 +40,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <span class="nav-icon">➕</span>
-              <span class="nav-text">إنشاء حدث</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <span class="nav-icon">📊</span>
-              <span class="nav-text">الإحصائيات</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <span class="nav-icon">⚙️</span>
-              <span class="nav-text">الإعدادات</span>
+            <a href="dashborad.html" class="nav-link">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-text">الرئيسية</span>
             </a>
           </li>
         </ul>
@@ -68,9 +50,6 @@
 
       <div class="sidebar-footer">
         <div class="user-profile">
-          <div class="user-avatar">
-            <img src="https://via.placeholder.com/40" alt="صورة المستخدم">
-          </div>
           <div class="user-info">
             <div class="user-name">أحمد محمد</div>
             <div class="user-email">ahmed@example.com</div>
@@ -92,19 +71,9 @@
           <p class="page-subtitle">إنشاء تقويم مخصص وفقاً لاحتياجاتك</p>
         </div>
         <div class="header-right">
-          <div class="search-box">
-            <input type="text" placeholder="البحث في التقاويم...">
-            <span class="search-icon">🔍</span>
-          </div>
           <button class="theme-toggle" id="themeToggle">
             <span class="theme-icon">🌙</span>
           </button>
-          <div class="notifications">
-            <button class="notification-btn">
-              <span class="nav-icon">🔔</span>
-              <span class="notification-badge">3</span>
-            </button>
-          </div>
         </div>
       </header>
 
@@ -119,279 +88,235 @@
               إضافة تقويم جديد
             </button>
           </div>
-          
+
           <div class="calendar-grid">
-            <div class="calendar-card">
-              <div class="calendar-card-header">
-                <h3>التقويم الشخصي</h3>
-                <div class="calendar-actions">
-                  <button class="btn-icon-btn" title="تعديل">✏️</button>
-                  <button class="btn-icon-btn" title="حذف">🗑️</button>
-                </div>
-              </div>
-              <div class="calendar-card-body">
-                <div class="calendar-info">
-                  <span class="info-label">النطاق:</span>
-                  <span class="info-value">يومي</span>
-                </div>
-                <div class="calendar-info">
-                  <span class="info-label">الأهداف:</span>
-                  <span class="info-value">5 أهداف</span>
-                </div>
-                <div class="calendar-info">
-                  <span class="info-label">آخر تحديث:</span>
-                  <span class="info-value">منذ ساعتين</span>
-                </div>
-              </div>
-            </div>
 
-            <div class="calendar-card">
-              <div class="calendar-card-header">
-                <h3>تقويم العمل</h3>
-                <div class="calendar-actions">
-                  <button class="btn-icon-btn" title="تعديل">✏️</button>
-                  <button class="btn-icon-btn" title="حذف">🗑️</button>
-                </div>
-              </div>
-              <div class="calendar-card-body">
-                <div class="calendar-info">
-                  <span class="info-label">النطاق:</span>
-                  <span class="info-value">أسبوعي</span>
-                </div>
-                <div class="calendar-info">
-                  <span class="info-label">الأهداف:</span>
-                  <span class="info-value">3 أهداف</span>
-                </div>
-                <div class="calendar-info">
-                  <span class="info-label">آخر تحديث:</span>
-                  <span class="info-value">أمس</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Add Calendar Modal -->
-        <div class="modal-overlay" id="calendarModal">
-          <div class="modal-container">
-            <div class="modal-header">
-              <h2>إضافة تقويم جديد</h2>
-              <button class="modal-close" id="closeModal">✕</button>
-            </div>
-            
-            <div class="modal-body">
-              <!-- Progress Indicator -->
-              <div class="form-progress">
-                <div class="progress-step active" data-step="1">
-                  <div class="step-number">1</div>
-                  <div class="step-label">المعلومات الأساسية</div>
-                </div>
-                <div class="progress-step" data-step="2">
-                  <div class="step-number">2</div>
-                  <div class="step-label">جدول النوم</div>
-                </div>
-                <div class="progress-step" data-step="3">
-                  <div class="step-number">3</div>
-                  <div class="step-label">إعدادات اليوم</div>
-                </div>
-                <div class="progress-step" data-step="4">
-                  <div class="step-number">4</div>
-                  <div class="step-label">الأهداف</div>
-                </div>
-              </div>
-
-              <!-- Form Steps -->
-              <form class="calendar-form" id="calendarForm">
-                <!-- Step 1: Basic Info -->
-                <div class="form-step active" data-step="1">
-                  <div class="step-content">
-                    <h3>المعلومات الأساسية</h3>
-                    <div class="form-group">
-                      <label for="calendarName">اسم التقويم</label>
-                      <input type="text" id="calendarName" name="calendarName" placeholder="أدخل اسم التقويم" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="calendarScope">نطاق التقويم</label>
-                      <select id="calendarScope" name="calendarScope" required>
-                        <option value="">اختر نطاق التقويم</option>
-                        <option value="daily">يومي</option>
-                        <option value="weekly">أسبوعي</option>
-                        <option value="monthly">شهري</option>
-                        <option value="yearly">سنوي</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Step 2: Sleep Schedule -->
-                <div class="form-step" data-step="2">
-                  <div class="step-content">
-                    <h3>جدول النوم</h3>
-                    <div class="sleep-schedules" id="sleepSchedules">
-                      <div class="sleep-schedule-item">
-                        <div class="form-row">
-                          <div class="form-group">
-                            <label>وقت بداية النوم</label>
-                            <input type="time" name="sleepStart" value="22:00">
-                          </div>
-                          <div class="form-group">
-                            <label>وقت نهاية النوم</label>
-                            <input type="time" name="sleepEnd" value="06:00">
-                          </div>
-                          <div class="form-group">
-                            <button type="button" class="btn btn-danger btn-sm remove-sleep-schedule">حذف</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-secondary" id="addSleepSchedule">
-                      <span class="btn-icon">➕</span>
-                      إضافة وقت نوم آخر
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Step 3: Day Duration Settings -->
-                <div class="form-step" data-step="3">
-                  <div class="step-content">
-                    <h3>إعدادات اليوم</h3>
-                    
-                    <!-- Weekdays Settings -->
-                    <div class="settings-section">
-                      <h4>الأيام العادية (أيام الأسبوع)</h4>
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label>وقت البداية</label>
-                          <input type="time" name="weekdayStart" value="08:00">
-                        </div>
-                        <div class="form-group">
-                          <label>وقت النهاية</label>
-                          <input type="time" name="weekdayEnd" value="17:00">
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Special Dates -->
-                    <div class="settings-section">
-                      <h4>التواريخ الخاصة</h4>
-                      <div class="special-dates" id="specialDates">
-                        <div class="special-date-item">
-                          <div class="form-row">
-                            <div class="form-group">
-                              <label>التاريخ</label>
-                              <input type="date" name="specialDate">
-                            </div>
-                            <div class="form-group">
-                              <label>وقت البداية</label>
-                              <input type="time" name="specialStart" value="09:00">
-                            </div>
-                            <div class="form-group">
-                              <label>وقت النهاية</label>
-                              <input type="time" name="specialEnd" value="18:00">
-                            </div>
-                            <div class="form-group">
-                              <button type="button" class="btn btn-danger btn-sm remove-special-date">حذف</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <button type="button" class="btn btn-secondary" id="addSpecialDate">
-                        <span class="btn-icon">➕</span>
-                        إضافة تاريخ خاص
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Step 4: Goals -->
-                <div class="form-step" data-step="4">
-                  <div class="step-content">
-                    <h3>الأهداف</h3>
-                    <div class="goals" id="goals">
-                      <div class="goal-item">
-                        <div class="form-group">
-                          <label>اسم الهدف</label>
-                          <input type="text" name="goalName" placeholder="أدخل اسم الهدف">
-                        </div>
-                        <div class="form-group">
-                          <label>الأولوية</label>
-                          <select name="goalPriority">
-                            <option value="high">عالي</option>
-                            <option value="medium">متوسط</option>
-                            <option value="low">منخفض</option>
-                          </select>
-                        </div>
-                        
-                        <!-- Preferred Times -->
-                        <div class="preferred-times">
-                          <h5>الأوقات المفضلة</h5>
-                          <div class="preferred-time-item">
-                            <div class="form-row">
-                              <div class="form-group">
-                                <label>الأيام</label>
-                                <select name="preferredDays" multiple>
-                                  <option value="sunday">الأحد</option>
-                                  <option value="monday">الاثنين</option>
-                                  <option value="tuesday">الثلاثاء</option>
-                                  <option value="wednesday">الأربعاء</option>
-                                  <option value="thursday">الخميس</option>
-                                  <option value="friday">الجمعة</option>
-                                  <option value="saturday">السبت</option>
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label>الوقت المفضل</label>
-                                <input type="time" name="preferredTime" value="10:00">
-                              </div>
-                              <div class="form-group">
-                                <button type="button" class="btn btn-danger btn-sm remove-preferred-time">حذف</button>
-                              </div>
-                            </div>
-                          </div>
-                          <button type="button" class="btn btn-secondary btn-sm add-preferred-time">
-                            <span class="btn-icon">➕</span>
-                            إضافة وقت مفضل
-                          </button>
-                        </div>
-
-                        <div class="form-group">
-                          <label>تكرار الهدف</label>
-                          <select name="goalRepeat">
-                            <option value="daily">يومي</option>
-                            <option value="weekly">أسبوعي</option>
-                            <option value="monthly">شهري</option>
-                            <option value="custom">مخصص</option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <button type="button" class="btn btn-danger remove-goal">حذف الهدف</button>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-secondary" id="addGoal">
-                      <span class="btn-icon">➕</span>
-                      إضافة هدف آخر
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Form Navigation -->
-                <div class="form-navigation">
-                  <button type="button" class="btn btn-secondary" id="prevStep" disabled>السابق</button>
-                  <button type="button" class="btn btn-primary" id="nextStep">التالي</button>
-                  <button type="submit" class="btn btn-success" id="submitForm" style="display: none;">إنشاء التقويم</button>
-                </div>
-              </form>
-            </div>
           </div>
         </div>
       </div>
-    </main>
+  </div>
+
+  <!-- Add Calendar Modal -->
+  <div class="modal-overlay" id="calendarModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>إضافة تقويم جديد</h2>
+        <button class="modal-close" id="closeModal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Progress Indicator -->
+        <div class="form-progress">
+          <div class="progress-step active" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-label">المعلومات الأساسية</div>
+          </div>
+          <div class="progress-step" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-label">جدول النوم</div>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-label">إعدادات اليوم</div>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-number">4</div>
+            <div class="step-label">الأهداف</div>
+          </div>
+        </div>
+
+        <!-- Form Steps -->
+        <form class="calendar-form" id="calendarForm">
+          <!-- Step 1: Basic Info -->
+          <div class="form-step active" data-step="1">
+            <div class="step-content">
+              <h3>المعلومات الأساسية</h3>
+              <div class="form-group">
+                <label for="calendarName">اسم التقويم</label>
+                <input type="text" id="calendarName" name="calendarName" placeholder="أدخل اسم التقويم" required>
+              </div>
+              <div class="form-group">
+                <label for="calendarScope">نطاق التقويم</label>
+                <select id="calendarScope" name="calendarScope" required>
+                  <option value="">اختر نطاق التقويم</option>
+                  <option value="daily">يومي</option>
+                  <option value="weekly">أسبوعي</option>
+                  <option value="monthly">شهري</option>
+                  <option value="yearly">سنوي</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Sleep Schedule -->
+          <div class="form-step" data-step="2">
+            <div class="step-content">
+              <h3>جدول النوم</h3>
+              <div class="sleep-schedules" id="sleepSchedules">
+                <div class="sleep-schedule-item">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>وقت بداية النوم</label>
+                      <input type="time" name="sleepStart" value="22:00">
+                    </div>
+                    <div class="form-group">
+                      <label>وقت نهاية النوم</label>
+                      <input type="time" name="sleepEnd" value="06:00">
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="btn btn-danger btn-sm remove-sleep-schedule">حذف</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary" id="addSleepSchedule">
+                <span class="btn-icon">➕</span>
+                إضافة وقت نوم آخر
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Day Duration Settings -->
+          <div class="form-step" data-step="3">
+            <div class="step-content">
+              <h3>إعدادات اليوم</h3>
+
+              <!-- Weekdays Settings -->
+              <div class="settings-section">
+                <h4>الأيام العادية (أيام الأسبوع)</h4>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>وقت البداية</label>
+                    <input type="time" name="weekdayStart" value="08:00">
+                  </div>
+                  <div class="form-group">
+                    <label>وقت النهاية</label>
+                    <input type="time" name="weekdayEnd" value="17:00">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Special Dates -->
+              <div class="settings-section">
+                <h4>التواريخ الخاصة</h4>
+                <div class="special-dates" id="specialDates">
+                  <div class="special-date-item">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label>التاريخ</label>
+                        <input type="date" name="specialDate">
+                      </div>
+                      <div class="form-group">
+                        <label>وقت البداية</label>
+                        <input type="time" name="specialStart" value="09:00">
+                      </div>
+                      <div class="form-group">
+                        <label>وقت النهاية</label>
+                        <input type="time" name="specialEnd" value="18:00">
+                      </div>
+                      <div class="form-group">
+                        <button type="button" class="btn btn-danger btn-sm remove-special-date">حذف</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-secondary" id="addSpecialDate">
+                  <span class="btn-icon">➕</span>
+                  إضافة تاريخ خاص
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Goals -->
+          <div class="form-step" data-step="4">
+            <div class="step-content">
+              <h3>الأهداف</h3>
+              <div class="goals" id="goals">
+                <div class="goal-item">
+                  <div class="form-group">
+                    <label>اسم الهدف</label>
+                    <input type="text" name="goalName" placeholder="أدخل اسم الهدف">
+                  </div>
+                  <div class="form-group">
+                    <label>الأولوية</label>
+                    <select name="goalPriority">
+                      <option value="high">عالي</option>
+                      <option value="medium">متوسط</option>
+                      <option value="low">منخفض</option>
+                    </select>
+                  </div>
+
+                  <!-- Preferred Times -->
+                  <div class="preferred-times">
+                    <h5>الأوقات المفضلة</h5>
+                    <div class="preferred-time-item">
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label>الأيام</label>
+                          <select name="preferredDays" multiple>
+                            <option value="sunday">الأحد</option>
+                            <option value="monday">الاثنين</option>
+                            <option value="tuesday">الثلاثاء</option>
+                            <option value="wednesday">الأربعاء</option>
+                            <option value="thursday">الخميس</option>
+                            <option value="friday">الجمعة</option>
+                            <option value="saturday">السبت</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>الوقت المفضل</label>
+                          <input type="time" name="preferredTime" value="10:00">
+                        </div>
+                        <div class="form-group">
+                          <button type="button" class="btn btn-danger btn-sm remove-preferred-time">حذف</button>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm add-preferred-time">
+                      <span class="btn-icon">➕</span>
+                      إضافة وقت مفضل
+                    </button>
+                  </div>
+
+                  <div class="form-group">
+                    <label>تكرار الهدف</label>
+                    <select name="goalRepeat">
+                      <option value="daily">يومي</option>
+                      <option value="weekly">أسبوعي</option>
+                      <option value="monthly">شهري</option>
+                      <option value="custom">مخصص</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger remove-goal">حذف الهدف</button>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary" id="addGoal">
+                <span class="btn-icon">➕</span>
+                إضافة هدف آخر
+              </button>
+            </div>
+          </div>
+
+          <!-- Form Navigation -->
+          <div class="form-navigation">
+            <button type="button" class="btn btn-secondary" id="prevStep" disabled>السابق</button>
+            <button type="button" class="btn btn-primary" id="nextStep">التالي</button>
+            <button type="submit" class="btn btn-success" id="submitForm" style="display: none;">إنشاء
+              التقويم</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  </main>
   </div>
 
   <!-- JavaScript Modules -->
-  <script src="../js/auth.js"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/sidebar.js"></script>
   <script src="../js/calendar-form.js"></script>

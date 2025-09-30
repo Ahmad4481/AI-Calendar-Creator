@@ -13,10 +13,10 @@ class SidebarManager {
   // Toggle sidebar collapse state
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
-    const sidebar = document.querySelector('.sidebar');
-    
+    const sidebar = document.querySelector(".sidebar");
+
     if (sidebar) {
-      sidebar.classList.toggle('collapsed', this.isCollapsed);
+      sidebar.classList.toggle("collapsed", this.isCollapsed);
       this.saveSidebarState();
     }
   }
@@ -24,10 +24,10 @@ class SidebarManager {
   // Collapse sidebar
   collapseSidebar() {
     this.isCollapsed = true;
-    const sidebar = document.querySelector('.sidebar');
-    
+    const sidebar = document.querySelector(".sidebar");
+
     if (sidebar) {
-      sidebar.classList.add('collapsed');
+      sidebar.classList.add("collapsed");
       this.saveSidebarState();
     }
   }
@@ -35,66 +35,43 @@ class SidebarManager {
   // Expand sidebar
   expandSidebar() {
     this.isCollapsed = false;
-    const sidebar = document.querySelector('.sidebar');
-    
+    const sidebar = document.querySelector(".sidebar");
+
     if (sidebar) {
-      sidebar.classList.remove('collapsed');
+      sidebar.classList.remove("collapsed");
       this.saveSidebarState();
     }
   }
 
   // Save sidebar state to localStorage
   saveSidebarState() {
-    localStorage.setItem('sidebarCollapsed', this.isCollapsed.toString());
+    localStorage.setItem("sidebarCollapsed", this.isCollapsed.toString());
   }
 
   // Load sidebar state from localStorage
   loadSidebarState() {
-    const savedState = localStorage.getItem('sidebarCollapsed');
-    if (savedState === 'true') {
+    const savedState = localStorage.getItem("sidebarCollapsed");
+    if (savedState === "true") {
       this.collapseSidebar();
-    }
-  }
-
-  // Handle navigation
-  handleNavigation(event) {
-    event.preventDefault();
-    
-    // Remove active class from all nav items
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.classList.remove('active');
-    });
-    
-    // Add active class to clicked item
-    const navItem = event.currentTarget.closest('.nav-item');
-    if (navItem) {
-      navItem.classList.add('active');
     }
   }
 
   // Bind sidebar events
   bindEvents() {
     // Sidebar toggle button
-    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarToggle = document.getElementById("sidebarToggle");
     if (sidebarToggle) {
-      sidebarToggle.addEventListener('click', () => {
+      sidebarToggle.addEventListener("click", () => {
         this.toggleSidebar();
       });
     }
 
-    // Navigation links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        this.handleNavigation(e);
-      });
-    });
-
     // Logout button
-    const logoutBtn = document.querySelector('.logout-btn');
+    const logoutBtn = document.querySelector(".logout-btn");
     if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
-          window.authManager.logout();
+      logoutBtn.addEventListener("click", () => {
+        if (confirm("هل أنت متأكد من تسجيل الخروج؟")) {
+          open("index.html", "_self");
         }
       });
     }

@@ -66,6 +66,7 @@ class CalendarManager {
       'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
     ];
     
+    
     const monthYear = document.querySelector('.calendar-header h4');
     if (monthYear) {
       monthYear.textContent = `${monthNames[this.currentDate.getMonth()]} ${this.currentDate.getFullYear()}`;
@@ -140,6 +141,7 @@ class CalendarManager {
 
 // Initialize calendar manager
 const calendarManager = new CalendarManager();
+calendarManager.generateCalendarDays();
 
 // Export for use in other modules
 window.calendarManager = calendarManager;

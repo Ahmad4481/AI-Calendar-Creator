@@ -182,6 +182,48 @@ body {
   background-color: var(--destructive);
 }
 
+
+@media screen and (max-height: 700px) {
+  body {
+    padding: 1rem 0;
+  }
+
+  .login-box {
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  .login-box h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .login-box .subtitle {
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .tab-container {
+    margin-bottom: 1rem;
+  }
+
+  .login-form .input-group {
+    margin-bottom: 0.75rem;
+  }
+
+  .login-form input {
+    padding: 0.5rem;
+  }
+
+  .submit-btn {
+    padding: 0.5rem;
+  }
+
+  .form-footer {
+    margin-top: 0.75rem;
+  }
+}
+
 @keyframes slideIn {
   from {
     transform: translateX(100%);

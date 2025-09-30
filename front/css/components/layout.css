@@ -60,13 +60,7 @@
   transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
 }
 
-/* Focus styles for accessibility */
-button:focus,
-input:focus,
-.nav-link:focus {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
+
 
 /* Loading states */
 .loading {
