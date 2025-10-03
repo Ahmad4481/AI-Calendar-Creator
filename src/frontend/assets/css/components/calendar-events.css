@@ -1,0 +1,905 @@
+/* Calendar events layout - Enhanced Design */
+
+/* Flatpickr Custom Styles */
+.flatpickr-input {
+  background: linear-gradient(135deg, var(--input-background) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: calc(var(--radius) * 1.2) !important;
+  padding: 0.8rem 1rem !important;
+  font-size: var(--text-sm) !important;
+  color: var(--foreground) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.flatpickr-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  outline: none !important;
+}
+
+.flatpickr-calendar {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-2) !important;
+  font-family: inherit !important;
+}
+
+.flatpickr-day {
+  color: var(--foreground) !important;
+  border-radius: calc(var(--radius) * 0.5) !important;
+}
+
+.flatpickr-day:hover {
+  background: var(--muted) !important;
+  border-color: var(--muted) !important;
+}
+
+.flatpickr-day.selected {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.flatpickr-day.today {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+.flatpickr-time {
+  border-top: 1px solid var(--border) !important;
+}
+
+.flatpickr-time input {
+  background: var(--card) !important;
+  color: var(--foreground) !important;
+  border: none !important;
+}
+
+.flatpickr-time input:hover {
+  background: var(--muted) !important;
+}
+
+/* Choices.js Custom Styles */
+.choices {
+  margin-bottom: 0 !important;
+}
+
+.choices__inner {
+  background: linear-gradient(135deg, var(--input-background) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: calc(var(--radius) * 1.2) !important;
+  padding: 0.8rem 1rem !important;
+  font-size: var(--text-sm) !important;
+  min-height: auto !important;
+}
+
+.choices__inner:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15) !important;
+}
+
+.choices__list--dropdown {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-2) !important;
+}
+
+.choices__item {
+  color: var(--foreground) !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.choices__item--choice:hover {
+  background: var(--muted) !important;
+}
+
+.choices__item--choice.is-highlighted {
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+.calendar-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.calendar-main .calendar-list-section {
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 1100px) {
+  .calendar-main {
+    gap: var(--space-4);
+  }
+}
+
+.calendar-panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: box-shadow var(--transition-normal);
+}
+
+.calendar-panel:hover {
+  box-shadow: var(--shadow-2);
+}
+
+.calendar-panel-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.calendar-panel-header h2 {
+  font-size: var(--text-base) !important;
+  font-weight: var(--font-weight-medium) !important;
+  margin: 0 !important;
+  color: var(--foreground) !important;
+}
+
+.calendar-panel-header p {
+  color: var(--muted-foreground);
+  font-size: var(--text-sm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.calendar-panel-header .btn {
+  align-self: flex-start !important;
+  margin-top: var(--space-1) !important;
+  padding: 0.5rem 1rem !important;
+  font-size: var(--text-sm) !important;
+}
+
+.calendar-widget {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  min-height: 450px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Tablet styles (iPad) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .calendar-widget .fc-button {
+    padding: 0.3rem 0.6rem !important;
+    font-size: var(--text-xs) !important;
+    border-radius: calc(var(--radius) * 0.5) !important;
+  }
+  
+  .calendar-widget .fc-toolbar-title {
+    font-size: var(--text-base) !important;
+  }
+  
+  .calendar-panel-header .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: var(--text-xs);
+  }
+  
+  .ai-chat-panel {
+    min-height: calc(100vh - 10rem);
+    max-height: calc(100vh - 10rem);
+  }
+  
+  .ai-chat-messages {
+    max-height: 350px;
+  }
+  
+  .ai-chat-send {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.8rem;
+  }
+  
+  .ai-chat-send i {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-widget {
+    min-height: 350px;
+  }
+  
+  .calendar-widget .fc-button {
+    padding: 0.25rem 0.5rem !important;
+    font-size: var(--text-xs) !important;
+    border-radius: calc(var(--radius) * 0.4) !important;
+  }
+  
+  .calendar-widget .fc-toolbar-title {
+    font-size: var(--text-sm) !important;
+  }
+  
+  .ai-chat-send {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.7rem;
+  }
+  
+  .ai-chat-send i {
+    font-size: 0.7rem;
+  }
+  
+  .ai-chat-messages {
+    max-height: 300px;
+  }
+}
+
+.calendar-widget .fc {
+  direction: rtl;
+}
+
+.calendar-widget .fc-toolbar-title {
+  font-size: var(--text-lg) !important;
+  font-weight: var(--font-weight-medium) !important;
+}
+
+.calendar-widget .fc-button {
+  background-color: var(--muted) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--foreground) !important;
+  padding: 0.4rem 0.8rem !important;
+  font-size: var(--text-xs) !important;
+  font-weight: var(--font-weight-medium) !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.calendar-widget .fc-button:hover {
+  background-color: var(--input-background) !important;
+  color: var(--foreground) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.calendar-widget .fc-button-primary {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border-color: var(--primary) !important;
+}
+
+.calendar-widget .fc-button-primary:hover {
+  background-color: var(--primary-foreground) !important;
+  color: var(--primary) !important;
+  border-color: var(--primary-foreground) !important;
+}
+
+.calendar-widget .fc-button:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.calendar-widget .fc-daygrid-day.fc-day-today {
+  background-color: rgba(10, 132, 255, 0.08);
+  border-radius: var(--radius);
+}
+
+.calendar-widget .fc-daygrid-day-number {
+  font-weight: var(--font-weight-medium) !important;
+  color: var(--foreground) !important;
+  padding: 0.3rem !important;
+  border-radius: calc(var(--radius) * 0.4) !important;
+  transition: background-color var(--transition-normal) !important;
+  font-size: var(--text-sm) !important;
+}
+
+.calendar-widget .fc-daygrid-day-number:hover {
+  background-color: var(--muted) !important;
+}
+
+.calendar-widget .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  font-weight: var(--font-weight-medium) !important;
+}
+
+.calendar-widget .fc-event {
+  border-radius: calc(var(--radius) * 0.5) !important;
+  border: none !important;
+  padding: 0.2rem 0.4rem !important;
+  font-size: var(--text-xs) !important;
+  font-weight: var(--font-weight-medium) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: all var(--transition-normal) !important;
+  cursor: pointer !important;
+}
+
+.calendar-widget .fc-event:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.calendar-widget .fc-event.event-category-meeting {
+  background: linear-gradient(135deg, #0a84ff, #007aff) !important;
+  color: #ffffff !important;
+}
+
+.calendar-widget .fc-event.event-category-task {
+  background: linear-gradient(135deg, #34c759, #30d158) !important;
+  color: #ffffff !important;
+}
+
+.calendar-widget .fc-event.event-category-reminder {
+  background: linear-gradient(135deg, #ff9500, #ff9f0a) !important;
+  color: #1c1c1e !important;
+}
+
+.calendar-widget .fc-event.event-category-personal {
+  background: linear-gradient(135deg, #af52de, #bf5af2) !important;
+  color: #ffffff !important;
+}
+
+.calendar-ai-layout {
+  display: grid;
+  direction: ltr;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: stretch;
+  grid-template-areas: "chat main";
+}
+
+.calendar-ai-layout .ai-chat-panel {
+  grid-area: chat;
+}
+
+.calendar-ai-layout .calendar-main {
+  grid-area: main;
+}
+
+@media (max-width: 1100px) {
+  .calendar-ai-layout {
+    direction: rtl;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "chat"
+      "main";
+  }
+}
+
+/* Modern Chat Design */
+.ai-chat-panel {
+  background: linear-gradient(135deg, var(--card) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0;
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 8rem);
+  height: auto;
+  max-height: calc(100vh - 8rem);
+  position: sticky;
+  top: var(--space-5);
+  overflow: hidden;
+  direction: rtl;
+  transition: box-shadow var(--transition-normal);
+  resize: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+.ai-chat-panel:hover {
+  box-shadow: var(--shadow-2);
+}
+
+@media (max-width: 1100px) {
+  .ai-chat-panel {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* اجعل محتوى التقويم يبقى RTL */
+.calendar-main {
+  direction: rtl;
+}
+
+.ai-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: linear-gradient(135deg, var(--primary) 0%, rgba(10, 132, 255, 0.8) 100%);
+  color: var(--primary-foreground);
+  border-radius: 0 var(--radius) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-chat-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ai-chat-header h2 {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--primary-foreground);
+  position: relative;
+  z-index: 1;
+}
+
+.ai-chat-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-sm);
+  margin-top: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+
+.ai-chat-messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  overflow-y: auto;
+  padding: var(--space-3);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+  scroll-behavior: smooth;
+  max-height: 400px;
+}
+
+.ai-chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ai-chat-messages::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 3px;
+}
+
+.ai-chat-messages::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.ai-chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-foreground);
+}
+
+.ai-chat-messages.empty::after {
+  content: "ابدأ المحادثة مع Qwen Plus";
+  color: var(--muted-foreground);
+  font-size: var(--text-sm);
+  text-align: center;
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--muted) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: var(--radius);
+  border: 2px dashed var(--border);
+}
+
+.ai-message {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  background: var(--muted);
+  color: var(--foreground);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ai-message:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.ai-message.user {
+  background: linear-gradient(135deg, var(--primary) 0%, rgba(10, 132, 255, 0.9) 100%);
+  color: var(--primary-foreground);
+  margin-left: var(--space-3);
+  border-radius: var(--radius) var(--radius) 0 var(--radius);
+}
+
+.ai-message.assistant {
+  background: linear-gradient(135deg, var(--card) 0%, rgba(255, 255, 255, 0.05) 100%);
+  color: var(--foreground);
+  margin-right: var(--space-3);
+  border-radius: var(--radius) var(--radius) var(--radius) 0;
+  border: 1px solid var(--border);
+}
+
+.ai-message .ai-message-meta {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  display: flex;
+  gap: 0.4rem;
+}
+
+.ai-chat-input {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-top: 1px solid var(--border);
+  position: relative;
+  flex-wrap: nowrap;
+}
+
+.ai-chat-input::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+}
+
+.ai-chat-input textarea {
+  flex: 1 !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: calc(var(--radius) * 1.2) !important;
+  border: 1px solid var(--border) !important;
+  background: linear-gradient(135deg, var(--input-background) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  resize: none !important;
+  min-height: 40px !important;
+  max-height: 120px !important;
+  font-size: var(--text-sm) !important;
+  color: var(--foreground) !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.ai-chat-input textarea:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(10, 132, 255, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+  outline: none !important;
+}
+
+.ai-chat-input textarea:hover {
+  background: linear-gradient(135deg, var(--muted) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+}
+
+.ai-chat-input textarea::placeholder {
+  color: var(--muted-foreground) !important;
+  opacity: 0.8 !important;
+}
+
+.ai-chat-send {
+  border-radius: 50%;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(10, 132, 255, 0.3);
+  transition: all var(--transition-normal);
+  background: linear-gradient(135deg, var(--primary) 0%, rgba(10, 132, 255, 0.9) 100%);
+  border: none;
+  color: var(--primary-foreground);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ai-chat-send::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.ai-chat-send:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(10, 132, 255, 0.4);
+}
+
+.ai-chat-send:hover::before {
+  left: 100%;
+}
+
+.ai-chat-send:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow: 0 1px 4px rgba(10, 132, 255, 0.3);
+}
+
+.ai-chat-send i {
+  font-size: 0.9rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.event-side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.event-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.event-card h3 {
+  font-size: var(--text-lg);
+}
+
+.event-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.event-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .event-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.event-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.event-form label {
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+.event-form input,
+.event-form select,
+.event-form textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.2);
+  background-color: var(--input-background);
+  color: var(--foreground);
+  font-size: var(--text-sm);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
+}
+
+.event-form input:focus,
+.event-form select:focus,
+.event-form textarea:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15);
+  background-color: var(--background);
+}
+
+/* Hover لطيف على الحقول */
+.event-form input:hover,
+.event-form select:hover,
+.event-form textarea:hover {
+  background-color: var(--muted);
+}
+
+.event-submit {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: none;
+  border-radius: calc(var(--radius) * 1.5);
+  padding: 0.7rem 1rem;
+}
+
+/* تحسين تماسك أزرار FullCalendar */
+.calendar-widget .fc-button {
+  border-radius: calc(var(--radius) * 0.9);
+}
+
+.calendar-widget .fc-button:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: var(--space-1);
+}
+
+.event-list.empty {
+  justify-content: center;
+  align-items: center;
+  color: var(--muted-foreground);
+  min-height: 180px;
+}
+
+.event-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background-color: var(--background);
+}
+
+.event-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.event-item-title {
+  font-weight: var(--font-weight-medium);
+}
+
+.event-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+.event-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: calc(var(--radius) / 1.5);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.event-badge.meeting {
+  background-color: rgba(10, 132, 255, 0.12);
+  color: #0a84ff;
+}
+
+.event-badge.task {
+  background-color: rgba(52, 199, 89, 0.15);
+  color: #34c759;
+}
+
+.event-badge.reminder {
+  background-color: rgba(255, 149, 0, 0.15);
+  color: #ff9500;
+}
+
+.event-badge.personal {
+  background-color: rgba(175, 82, 222, 0.18);
+  color: #af52de;
+}
+
+.event-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.event-actions button {
+  background: none;
+  border: none;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  border-radius: var(--radius);
+  padding: 0.35rem 0.5rem;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.event-actions button:hover {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.add-system-btn {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.9rem 1.25rem;
+  border-radius: calc(var(--radius) * 1.5);
+  border: none;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-2);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.add-system-btn i {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .add-system-btn {
+    left: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+.empty-placeholder {
+  text-align: center;
+  font-size: var(--text-sm);
+}
+
+.dark .event-card,
+.dark .calendar-panel {
+  background-color: var(--card);
+  box-shadow: var(--shadow-2);
+}
+
+.dark .calendar-widget {
+  background-color: var(--card);
+}

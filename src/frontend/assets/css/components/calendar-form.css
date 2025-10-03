@@ -25,17 +25,17 @@
 
 /* Button Styles */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
-  border: none;
-  border-radius: var(--radius);
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  text-decoration: none;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: var(--space-2) !important;
+  padding: var(--space-3) var(--space-5) !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  font-size: var(--text-sm) !important;
+  font-weight: var(--font-weight-medium) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-normal) !important;
+  text-decoration: none !important;
 }
 
 .btn-primary {
@@ -342,20 +342,20 @@
 
 .form-group input,
 .form-group select {
-  width: 100%;
-  padding: var(--space-3);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background-color: var(--input-background);
-  color: var(--foreground);
-  font-size: var(--text-sm);
-  transition: border-color var(--transition-normal);
+  width: 100% !important;
+  padding: var(--space-3) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  background-color: var(--input-background) !important;
+  color: var(--foreground) !important;
+  font-size: var(--text-sm) !important;
+  transition: border-color var(--transition-normal) !important;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: var(--ring);
-  outline: none;
+  border-color: var(--ring) !important;
+  outline: none !important;
 }
 
 .form-group select[multiple] {
@@ -406,7 +406,7 @@
 }
 
 .form-navigation .btn {
-  min-width: 120px;
+  min-width: 120px !important;
 }
 
 /* Responsive Design */

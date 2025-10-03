@@ -95,7 +95,7 @@
 //       const activityItem = document.createElement('div');
 //       activityItem.className = 'activity-item';
 //       activityItem.innerHTML = `
-//         <div class="activity-icon">⚡</div>
+//         <div class="activity-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
 //         <div class="activity-content">
 //           <div class="activity-text">${actionDetail.title}</div>
 //           <div class="activity-time">الآن</div>

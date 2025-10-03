@@ -131,7 +131,9 @@
 .nav-icon {
   font-size: 1.25rem;
   width: 20px;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-text {

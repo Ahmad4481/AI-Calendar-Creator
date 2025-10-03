@@ -1,4 +1,4 @@
-@import url('./global.css');
+@import url('../base/global.css');
 
 
 body {
@@ -85,26 +85,73 @@ body {
 }
 
 .login-form input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--input-background);
-  color: var(--foreground);
-  font-size: 0.875rem;
+  width: 100% !important;
+  padding: 1rem 1.2rem !important;
+  border: 1px solid var(--border) !important;
+  border-radius: calc(var(--radius) * 1.5) !important;
+  background: linear-gradient(135deg, var(--input-background) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  color: var(--foreground) !important;
+  font-size: 0.875rem !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.login-form input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+  outline: none !important;
+}
+
+.login-form input:hover {
+  background: linear-gradient(135deg, var(--muted) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+}
+
+.login-form input::placeholder {
+  color: var(--muted-foreground) !important;
+  opacity: 0.8 !important;
 }
 
 .submit-btn {
-  background: var(--primary);
-  color: var(--primary-foreground);
-  border: none;
-  padding: 0.75rem;
+  background: linear-gradient(135deg, var(--primary) 0%, rgba(10, 132, 255, 0.9) 100%) !important;
+  color: var(--primary-foreground) !important;
+  border: none !important;
+  padding: 1rem 1.5rem !important;
+  width: 100% !important;
+  border-radius: calc(var(--radius) * 1.5) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--font-weight-medium) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
   width: 100%;
-  border-radius: var(--radius);
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(10, 132, 255, 0.4) !important;
+}
+
+.submit-btn:hover::before {
+  left: 100% !important;
+}
+
+.submit-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(10, 132, 255, 0.3) !important;
 }
 
 /* Additional styles for enhanced login/register forms */

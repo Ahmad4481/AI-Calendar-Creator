@@ -113,13 +113,102 @@
   outline-color: var(--ring);
 }
 
-html {
-  font-size: var(--font-size);
-  scroll-behavior: smooth;
+/* Enhanced Input Styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea,
+select {
+  width: 100% !important;
+  padding: 0.8rem 1rem !important;
+  border: 1px solid var(--border) !important;
+  border-radius: calc(var(--radius) * 1.2) !important;
+  background: linear-gradient(135deg, var(--input-background) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  color: var(--foreground) !important;
+  font-size: var(--text-sm) !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-body {
-  overflow-x: hidden;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+  outline: none !important;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="date"]:hover,
+input[type="time"]:hover,
+input[type="number"]:hover,
+textarea:hover,
+select:hover {
+  background: linear-gradient(135deg, var(--muted) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+textarea::placeholder {
+  color: var(--muted-foreground) !important;
+  opacity: 0.8 !important;
+}
+
+/* Enhanced Button Styles */
+button,
+.btn {
+  padding: 0.7rem 1.2rem !important;
+  border: none !important;
+  border-radius: calc(var(--radius) * 1.2) !important;
+  font-size: var(--text-sm) !important;
+  font-weight: var(--font-weight-medium) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-normal) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+button::before,
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+button:hover::before,
+.btn:hover::before {
+  left: 100% !important;
+}
+
+button:active,
+.btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 

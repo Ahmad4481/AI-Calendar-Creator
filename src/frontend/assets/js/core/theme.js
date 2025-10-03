@@ -26,7 +26,8 @@ class ThemeManager {
     // Update theme icon
     const themeIcon = document.querySelector('.theme-icon');
     if (themeIcon) {
-      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      themeIcon.classList.remove('fa-sun', 'fa-moon');
+      themeIcon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
     }
     
     // Save theme preference

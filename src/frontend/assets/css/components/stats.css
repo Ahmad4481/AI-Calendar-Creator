@@ -30,6 +30,7 @@
   width: 60px;
   height: 60px;
   background-color: var(--muted);
+  color: var(--primary);
   border-radius: var(--radius);
   display: flex;
   align-items: center;
