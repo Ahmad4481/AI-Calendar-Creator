@@ -160,11 +160,7 @@ AI-Calendar-Creator/
 
 Contributions are welcome! Please follow existing code standards and ensure compatibility with the organized structure.
 
-## 📄 License
 
-This project is open source and available for use and development.
-
----
 
 **Project successfully organized and updated! 🎉**
 
