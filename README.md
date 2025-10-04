@@ -1,167 +1,272 @@
-# AI Calendar Creator 📅
+# AI Calendar Creator
 
-Smart Calendar Builder - Advanced web application for event and schedule management with AI support
+منشئ التقويم الذكي - تطبيق ويب متقدم لإنشاء وإدارة التقويمات الشخصية باستخدام الذكاء الاصطناعي.
 
-## 🚀 Features
+## 🌟 المميزات
 
-- **Interactive Calendar** with ability to add and edit events
-- **Artificial Intelligence** for user interaction
-- **Responsive Design** that works on all devices
-- **Arabic Interface** with easy-to-use design
-- **Advanced Management** for events and schedules
+- **إنشاء تقويم ذكي**: استخدام الذكاء الاصطناعي لإنشاء تقويمات متوازنة ومنظمة
+- **واجهة عربية**: تصميم متجاوب يدعم اللغة العربية والاتجاه من اليمين لليسار
+- **إدارة الأحداث**: إضافة وتعديل وحذف الأحداث بسهولة
+- **دردشة ذكية**: مساعد ذكي للإجابة على الأسئلة وتقديم النصائح
+- **تصميم حديث**: واجهة مستخدم جميلة ومتجاوبة
+- **إدارة التفضيلات**: تخصيص أوقات النوم والأهداف والكتل الزمنية المتاحة
 
-## 📁 Organized Project Structure
+## 🚀 البدء السريع
+
+### المتطلبات
+
+- Node.js 16.0.0 أو أحدث
+- npm 8.0.0 أو أحدث
+
+### التثبيت
+
+1. **استنساخ المشروع**
+   ```bash
+   git clone https://github.com/your-username/ai-calendar-creator.git
+   cd ai-calendar-creator
+   ```
+
+2. **تثبيت المكتبات**
+   ```bash
+   npm install
+   ```
+
+3. **إعداد متغيرات البيئة**
+   ```bash
+   cp .env.example .env
+   # قم بتعديل ملف .env وأضف مفاتيح API الخاصة بك
+   ```
+
+4. **تشغيل التطبيق**
+   ```bash
+   npm start
+   ```
+
+5. **فتح المتصفح**
+   - انتقل إلى `http://localhost:3000`
+
+## 📁 هيكل المشروع
 
 ```
-AI-Calendar-Creator/
+ai-calendar-creator/
 ├── src/
 │   ├── frontend/
-│   │   ├── pages/                    # HTML pages
-│   │   │   ├── index.html           # Login page
-│   │   │   ├── dashborad.html       # Dashboard
-│   │   │   └── calendar.html        # Calendar page
-│   │   └── assets/
-│   │       ├── css/
-│   │       │   ├── base/            # Base styles
-│   │       │   │   ├── global.css   # Global styles
-│   │       │   │   └── normalize.css # CSS reset
-│   │       │   ├── components/      # Component styles
-│   │       │   │   ├── calendar-events.css
-│   │       │   │   ├── calendar-form.css
-│   │       │   │   ├── header.css
-│   │       │   │   ├── layout.css
-│   │       │   │   ├── sidebar.css
-│   │       │   │   ├── stats.css
-│   │       │   │   └── widgets.css
-│   │       │   └── pages/           # Page-specific styles
-│   │       │       └── login.css
-│   │       ├── js/
-│   │       │   ├── core/            # Core functionality
-│   │       │   │   ├── sidebar.js  # Sidebar functionality
-│   │       │   │   └── theme.js    # Theme management
-│   │       │   ├── components/      # JavaScript components
-│   │       │   │   ├── calendar-chat.js      # AI chat
-│   │       │   │   ├── calendar-events.js   # Event management
-│   │       │   │   ├── calendar-form-core.js # Calendar form core
-│   │       │   │   ├── calendar-form-helpers.js # Form helper functions
-│   │       │   │   └── calendar-form.js     # Main form file
-│   │       │   ├── pages/           # Page-specific scripts
-│   │       │   │   ├── calendar.js
-│   │       │   │   ├── dashboard.js
-│   │       │   │   └── index.js
-│   │       │   └── utils/           # Utility functions
-│   │       │       ├── Preferences.js
-│   │       │       └── PromptBuilder.js
-│   │       └── fonts/               # Font files
-│   │           ├── fa-regular-400.woff2
-│   │           ├── fa-solid-900.ttf
-│   │           ├── fa-solid-900.woff2
-│   │           ├── fa-v4compatibility.ttf
-│   │           └── fa-v4compatibility.woff2
-│   ├── backend/
-│   │   ├── api/                     # API endpoints
-│   │   ├── models/                  # Data models
-│   │   └── utils/                   # Server utilities
-│   ├── config/
-│   │   └── paths.js                 # Path configuration
-│   └── docs/
-│       └── PROJECT_STRUCTURE.md     # Structure documentation
-├── backend/                         # Server folder (empty for now)
-└── README.md                        # This file
+│   │   ├── pages/           # صفحات HTML
+│   │   │   ├── index.html   # صفحة تسجيل الدخول
+│   │   │   ├── dashboard.html # لوحة التحكم
+│   │   │   └── calendar.html  # صفحة التقويم
+│   │   ├── assets/
+│   │   │   ├── css/         # ملفات CSS
+│   │   │   │   ├── base/    # الأنماط الأساسية
+│   │   │   │   ├── components/ # مكونات UI
+│   │   │   │   └── pages/   # أنماط الصفحات
+│   │   │   ├── js/          # ملفات JavaScript
+│   │   │   │   ├── core/    # الملفات الأساسية
+│   │   │   │   ├── components/ # مكونات التطبيق
+│   │   │   │   ├── pages/   # منطق الصفحات
+│   │   │   │   └── utils/   # أدوات مساعدة
+│   │   │   └── fonts/       # الخطوط
+│   │   └── images/          # الصور
+│   ├── backend/             # الخادم (مستقبلاً)
+│   └── config/              # ملفات الإعدادات
+├── package.json
+├── .env.example
+└── README.md
 ```
 
-## 🛠️ Technologies Used
+## 🛠️ المكتبات المستخدمة
 
-### Frontend
-- **HTML5** - Page structure
-- **CSS3** - Design and styling
-- **JavaScript ES6+** - Interactive functionality
-- **FullCalendar** - Calendar library
-- **Flatpickr** - Date and time picker
-- **Choices.js** - Enhanced dropdown lists
-- **Font Awesome** - Icons
+### المكتبات الأساسية
+- **FullCalendar**: مكتبة التقويم المتقدمة
+- **Flatpickr**: منتقي التواريخ والأوقات
+- **Choices.js**: قوائم اختيار محسنة
+- **Floating UI**: تموضع العناصر العائمة
+- **Pico.css**: إطار عمل CSS خفيف
 
-### Backend
-- **Node.js** - Runtime environment (planned)
-- **Express.js** - Framework (planned)
+### أدوات التطوير
+- **Rollup**: حزم JavaScript
+- **PostCSS**: معالجة CSS
+- **ESLint**: فحص جودة الكود
+- **Prettier**: تنسيق الكود
+- **Jest**: اختبارات الوحدة
 
-## 📋 Main Files
+## 🔧 الأوامر المتاحة
 
-### Pages
-- `src/frontend/pages/index.html` - Login page
-- `src/frontend/pages/dashborad.html` - Main dashboard
-- `src/frontend/pages/calendar.html` - Calendar and events page
+```bash
+# تشغيل التطبيق في وضع التطوير
+npm run dev
 
-### Styles
-- `src/frontend/assets/css/base/global.css` - Global styles
-- `src/frontend/assets/css/components/` - Component styles
-- `src/frontend/assets/css/pages/login.css` - Login page styles
+# تشغيل التطبيق في وضع الإنتاج
+npm start
 
-### Scripts
-- `src/frontend/assets/js/core/theme.js` - Theme management
-- `src/frontend/assets/js/core/sidebar.js` - Sidebar functionality
-- `src/frontend/assets/js/components/calendar-events.js` - Event management
-- `src/frontend/assets/js/components/calendar-chat.js` - AI chat
-- `src/frontend/assets/js/components/calendar-form-core.js` - Calendar form core
-- `src/frontend/assets/js/components/calendar-form-helpers.js` - Form helper functions
+# بناء التطبيق للإنتاج
+npm run build
 
-## 🎨 Design
+# تشغيل الاختبارات
+npm test
 
-- **Consistent Color System** with CSS variables
-- **Responsive Design** for all screen sizes
-- **Smooth Visual Effects** and attractive animations
-- **Arabic Interface** with RTL support
+# فحص جودة الكود
+npm run lint
 
-## 🔧 Development
+# تنسيق الكود
+npm run format
 
-### System Requirements
-- Modern browser with ES6+ support
-- Web server (for current stage)
+# تشغيل الخادم المحلي
+npm run serve
+```
 
-### Project Setup
-1. Clone the repository
-2. Open files in a web browser
-3. Use a local server for development
+## ⚙️ الإعدادات
 
-## 📝 Recent Updates
+### متغيرات البيئة
 
-### ✅ Path Updates Completed
-- **HTML Files**: Updated all CSS and JS paths
-- **JavaScript Files**: Updated imports and requires
-- **CSS Files**: Updated @import statements
+قم بإنشاء ملف `.env` بناءً على `.env.example`:
 
-### ✅ Large Files Split
-- **calendar-form.js**: Split into 3 files:
-  - `calendar-form-core.js` - Core functionality
-  - `calendar-form-helpers.js` - Helper functions
-  - `calendar-form.js` - Main integration file
+```env
+# Qwen Plus API Configuration
+QWEN_PLUS_API_KEY=sk-your-qwen-key-here
+QWEN_PLUS_ENDPOINT=https://dashscope.aliyun.com/compatible-mode/v1/chat/completions
+QWEN_PLUS_MODEL=qwen-plus
+QWEN_PLUS_TEMPERATURE=0.7
+QWEN_PLUS_MAX_TOKENS=1024
 
-### ✅ Organized Structure
-- Clear separation between components and pages
-- Logical file organization
-- Easy maintenance and development
+# Application Configuration
+APP_NAME=AI Calendar Creator
+APP_VERSION=1.0.0
+APP_ENVIRONMENT=development
 
-## 🎯 New Features
+# Storage Configuration
+STORAGE_PREFIX=ai-calendar
+CHAT_HISTORY_KEY=ai-calendar-chat-history
+EVENTS_STORAGE_KEY=ai-calendar-events
 
-1. **Logical Organization** - Clear separation between components and pages
-2. **Scalability** - Easy to add new components
-3. **Maintainability** - Clear file locations
-4. **Team Collaboration** - Multiple developers can work without conflicts
-5. **Industry Standards** - Structure follows best practices
+# UI Configuration
+DEFAULT_THEME=light
+AUTO_SAVE_INTERVAL=30000
+MAX_CHAT_HISTORY=100
 
-## ⚠️ Important Notes
+# Development Settings
+DEBUG_MODE=true
+LOG_LEVEL=info
+API_TIMEOUT=30000
+```
 
-- **Paths**: All file paths updated to reflect new structure
-- **Compatibility**: Project compatible with all modern browsers
-- **Performance**: Optimized performance with efficient use of external libraries
-- **Splitting**: Large files split to improve performance and maintenance
+## 🎨 التخصيص
 
-## 🤝 Contributing
+### الألوان والثيمات
 
-Contributions are welcome! Please follow existing code standards and ensure compatibility with the organized structure.
+يمكنك تخصيص الألوان من خلال تعديل متغيرات CSS في `src/frontend/assets/css/base/global.css`:
 
+```css
+:root {
+  --primary: #0a84ff;
+  --secondary: #34c759;
+  --accent: #ff9500;
+  --destructive: #ff3b30;
+  /* ... المزيد من المتغيرات */
+}
+```
 
+### الخطوط
 
-**Project successfully organized and updated! 🎉**
+يمكنك تغيير الخطوط من خلال تعديل `font-family` في ملفات CSS.
 
-**All paths updated and files organized! ✅**
+## 📱 الاستجابة
+
+التطبيق مصمم ليعمل على جميع الأجهزة:
+- **سطح المكتب**: تجربة كاملة مع جميع المميزات
+- **التابلت**: واجهة محسنة للشاشات المتوسطة
+- **الهاتف المحمول**: تصميم متجاوب ومحسن للمس
+
+## 🔒 الأمان
+
+- جميع المفاتيح السرية محفوظة في متغيرات البيئة
+- لا يتم رفع ملف `.env` على GitHub
+- استخدام HTTPS في الإنتاج
+- حماية من XSS و CSRF
+
+## 🧪 الاختبار
+
+```bash
+# تشغيل جميع الاختبارات
+npm test
+
+# تشغيل الاختبارات مع التغطية
+npm run test:coverage
+
+# تشغيل الاختبارات في وضع المراقبة
+npm run test:watch
+```
+
+## 📦 النشر
+
+### النشر على GitHub Pages
+
+```bash
+npm run build
+npm run deploy
+```
+
+### النشر على Vercel
+
+```bash
+npm install -g vercel
+vercel --prod
+```
+
+### النشر على Netlify
+
+```bash
+npm run build
+# رفع مجلد dist على Netlify
+```
+
+## 🤝 المساهمة
+
+نرحب بمساهماتكم! يرجى اتباع الخطوات التالية:
+
+1. Fork المشروع
+2. إنشاء فرع للميزة الجديدة (`git checkout -b feature/amazing-feature`)
+3. Commit التغييرات (`git commit -m 'Add some amazing feature'`)
+4. Push إلى الفرع (`git push origin feature/amazing-feature`)
+5. فتح Pull Request
+
+## 📄 الترخيص
+
+هذا المشروع مرخص تحت رخصة MIT - راجع ملف [LICENSE](LICENSE) للتفاصيل.
+
+## 📞 الدعم
+
+- **المشاكل**: [GitHub Issues](https://github.com/your-username/ai-calendar-creator/issues)
+- **المناقشات**: [GitHub Discussions](https://github.com/your-username/ai-calendar-creator/discussions)
+- **البريد الإلكتروني**: support@aicalendar.com
+
+## 🙏 شكر وتقدير
+
+- [FullCalendar](https://fullcalendar.io/) - مكتبة التقويم الرائعة
+- [Flatpickr](https://flatpickr.js.org/) - منتقي التواريخ الممتاز
+- [Choices.js](https://github.com/Choices-js/Choices) - قوائم الاختيار المحسنة
+- [Pico.css](https://picocss.com/) - إطار عمل CSS البسيط
+
+## 📈 خطة التطوير
+
+### الإصدار 1.1.0
+- [ ] إضافة نظام إشعارات
+- [ ] دعم التقويمات المتعددة
+- [ ] تصدير/استيراد الأحداث
+- [ ] مزامنة مع Google Calendar
+
+### الإصدار 1.2.0
+- [ ] تطبيق الهاتف المحمول
+- [ ] دعم العمل الجماعي
+- [ ] تحليلات الإنتاجية
+- [ ] تكامل مع Slack
+
+### الإصدار 2.0.0
+- [ ] خادم خلفي كامل
+- [ ] قاعدة بيانات
+- [ ] نظام مصادقة متقدم
+- [ ] API عام
+
+---
+
+**تم تطويره بـ ❤️ في المملكة العربية السعودية**

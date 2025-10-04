@@ -1,0 +1,11 @@
+/* Vendor CSS imports */
+@import '@fullcalendar/core/main.css';
+@import '@fullcalendar/daygrid/main.css';
+@import '@fullcalendar/timegrid/main.css';
+@import '@fullcalendar/list/main.css';
+@import 'flatpickr/dist/flatpickr.min.css';
+@import 'choices.js/public/assets/styles/choices.min.css';
+@import '@floating-ui/core/dist/floating-ui.min.css';
+
+/* Font Awesome - using npm package instead of CDN */
+@import '@fortawesome/fontawesome-free/css/all.min.css';

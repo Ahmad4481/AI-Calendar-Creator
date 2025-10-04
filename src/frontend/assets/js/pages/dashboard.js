@@ -1,191 +1,307 @@
-// // Main dashboard functionality
-// class DashboardManager {
-//   constructor() {
-//     this.init();
-//   }
+/**
+ * Dashboard Manager - Main dashboard functionality
+ */
+class DashboardManager {
+  constructor() {
+    this.init();
+  }
 
-//   init() {
-//     // Wait for DOM to be ready
-//     if (document.readyState === 'loading') {
-//       document.addEventListener('DOMContentLoaded', () => {
-//         this.initializeDashboard();
-//       });
-//     } else {
-//       this.initializeDashboard();
-//     }
-//   }
+  init() {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        this.initializeDashboard();
+      });
+    } else {
+      this.initializeDashboard();
+    }
+  }
 
-//   // Initialize dashboard
-//   initializeDashboard() {
-//     // Check authentication
+  /**
+   * Initialize dashboard
+   */
+  initializeDashboard() {
+    // Check authentication
+    this.checkAuthentication();
 
-//     // Update user info
-//     window.authManager.updateUserInfo();
+    // Update user info
+    this.updateUserInfo();
 
-//     // Initialize all managers
-//     this.initializeManagers();
+    // Initialize all managers
+    this.initializeManagers();
 
-//     // Bind global events
-//     this.bindGlobalEvents();
+    // Bind global events
+    this.bindGlobalEvents();
 
-//     // Load dashboard data
-//     this.loadDashboardData();
-//   }
+    // Load dashboard data
+    this.loadDashboardData();
+  }
 
-//   // Initialize all component managers
-//   initializeManagers() {
-//     // Theme manager is already initialized
-//     // Sidebar manager is already initialized
-//     // Calendar manager is already initialized
-//     // Actions manager is already initialized
+  /**
+   * Check user authentication
+   */
+  
+
+  /**
+   * Update user information in the header
+   */
+  updateUserInfo() {
+    const userName = localStorage.getItem('userName') || 'مستخدم';
+    const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
     
-//     console.log('Dashboard managers initialized');
-//   }
+    // Update user name in header
+    const userNameElement = document.querySelector('.user-name');
+    if (userNameElement) {
+      userNameElement.textContent = userName;
+    }
 
-//   // Bind global dashboard events
-//   bindGlobalEvents() {
-//     // Listen for date selection events
-//     document.addEventListener('dateSelected', (e) => {
-//       this.handleDateSelected(e.detail);
-//     });
+    // Update user email in header
+    const userEmailElement = document.querySelector('.user-email');
+    if (userEmailElement) {
+      userEmailElement.textContent = userEmail;
+    }
+  }
 
-//     // Listen for action events
-//     document.addEventListener('actionTriggered', (e) => {
-//       this.handleActionTriggered(e.detail);
-//     });
+  /**
+   * Initialize all dashboard managers
+   */
+  initializeManagers() {
+    // Initialize theme manager
+    if (typeof ThemeManager !== 'undefined') {
+      this.themeManager = new ThemeManager();
+    }
 
-//     // Listen for window resize
-//     window.addEventListener('resize', () => {
-//       this.handleWindowResize();
-//     });
-//   }
+    // Initialize sidebar manager
+    if (typeof SidebarManager !== 'undefined') {
+      this.sidebarManager = new SidebarManager();
+    }
 
-//   // Handle date selection
-//   handleDateSelected(detail) {
-//     console.log('Date selected:', detail);
-//     // Update any components that depend on selected date
-//     this.updateDateDependentComponents(detail);
-//   }
+    // Initialize calendar manager
+    if (typeof CalendarManager !== 'undefined') {
+      this.calendarManager = new CalendarManager();
+    }
+  }
 
-//   // Handle action triggered
-//   handleActionTriggered(detail) {
-//     console.log('Action triggered:', detail);
-//     // Log activity or update UI based on action
-//     this.logActivity(detail);
-//   }
+  /**
+   * Bind global dashboard events
+   */
+  bindGlobalEvents() {
+    // Theme toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        this.themeManager?.toggleTheme();
+      });
+    }
 
-//   // Handle window resize
-//   handleWindowResize() {
-//     // Adjust layout for mobile/desktop
-//     this.adjustLayoutForScreenSize();
-//   }
+    // Sidebar toggle
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
+    if (sidebarToggle) {
+      sidebarToggle.addEventListener('click', () => {
+        this.sidebarManager?.toggleSidebar();
+      });
+    }
 
-//   // Update components that depend on selected date
-//   updateDateDependentComponents(dateDetail) {
-//     // Update events list for selected date
-//     // Update statistics
-//     // Update any other date-dependent components
-//   }
+    // Logout button
+    const logoutBtn = document.querySelector('.logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        this.handleLogout();
+      });
+    }
 
-//   // Log activity
-//   logActivity(actionDetail) {
-//     // Add to activity feed
-//     const activityList = document.querySelector('.activity-list');
-//     if (activityList) {
-//       const activityItem = document.createElement('div');
-//       activityItem.className = 'activity-item';
-//       activityItem.innerHTML = `
-//         <div class="activity-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
-//         <div class="activity-content">
-//           <div class="activity-text">${actionDetail.title}</div>
-//           <div class="activity-time">الآن</div>
-//         </div>
-//       `;
-      
-//       // Insert at the beginning
-//       activityList.insertBefore(activityItem, activityList.firstChild);
-      
-//       // Remove old items if too many
-//       const items = activityList.querySelectorAll('.activity-item');
-//       if (items.length > 10) {
-//         items[items.length - 1].remove();
-//       }
-//     }
-//   }
+    // Search functionality
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        this.handleSearch(e.target.value);
+      });
+    }
+  }
 
-//   // Adjust layout for screen size
-//   adjustLayoutForScreenSize() {
-//     const isMobile = window.innerWidth <= 768;
-//     const sidebar = document.querySelector('.sidebar');
+  /**
+   * Load dashboard data
+   */
+  loadDashboardData() {
+    // Load user statistics
+    this.loadUserStats();
+
+    // Load recent activities
+    this.loadRecentActivities();
+
+    // Load upcoming events
+    this.loadUpcomingEvents();
+  }
+
+  /**
+   * Load user statistics
+   */
+  loadUserStats() {
+    // Mock data - replace with actual API calls
+    const stats = {
+      totalEvents: 25,
+      completedTasks: 18,
+      upcomingMeetings: 7,
+      productivity: 85
+    };
+
+    // Update stats cards
+    this.updateStatsCard('total-events', stats.totalEvents);
+    this.updateStatsCard('completed-tasks', stats.completedTasks);
+    this.updateStatsCard('upcoming-meetings', stats.upcomingMeetings);
+    this.updateStatsCard('productivity', stats.productivity);
+  }
+
+  /**
+   * Update stats card
+   * @param {string} cardId - Card ID
+   * @param {number} value - Value to display
+   */
+  updateStatsCard(cardId, value) {
+    const card = document.querySelector(`#${cardId}`);
+    if (card) {
+      const valueElement = card.querySelector('.stat-value');
+      if (valueElement) {
+        valueElement.textContent = value;
+      }
+    }
+  }
+
+  /**
+   * Load recent activities
+   */
+  loadRecentActivities() {
+    // Mock data - replace with actual API calls
+    const activities = [
+      { type: 'event', text: 'تم إنشاء حدث جديد', time: 'منذ 5 دقائق' },
+      { type: 'task', text: 'تم إكمال مهمة', time: 'منذ 15 دقيقة' },
+      { type: 'meeting', text: 'اجتماع قادم', time: 'منذ ساعة' }
+    ];
+
+    this.renderActivities(activities);
+  }
+
+  /**
+   * Render activities list
+   * @param {Array} activities - Activities array
+   */
+  renderActivities(activities) {
+    const activitiesList = document.querySelector('.activities-list');
+    if (!activitiesList) return;
+
+    activitiesList.innerHTML = activities.map(activity => `
+      <div class="activity-item">
+        <div class="activity-icon">
+          <i class="fa-solid fa-${this.getActivityIcon(activity.type)}"></i>
+        </div>
+        <div class="activity-content">
+          <p class="activity-text">${activity.text}</p>
+          <span class="activity-time">${activity.time}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /**
+   * Get activity icon based on type
+   * @param {string} type - Activity type
+   * @returns {string} Icon class
+   */
+  getActivityIcon(type) {
+    const icons = {
+      event: 'calendar-plus',
+      task: 'check-circle',
+      meeting: 'users',
+      reminder: 'bell'
+    };
+    return icons[type] || 'circle';
+  }
+
+  /**
+   * Load upcoming events
+   */
+  loadUpcomingEvents() {
+    // Mock data - replace with actual API calls
+    const events = [
+      { title: 'اجتماع فريق العمل', time: '10:00', location: 'قاعة الاجتماعات' },
+      { title: 'موعد طبي', time: '14:30', location: 'عيادة الدكتور أحمد' },
+      { title: 'تسليم المشروع', time: '16:00', location: 'المكتب' }
+    ];
+
+    this.renderEvents(events);
+  }
+
+  /**
+   * Render events list
+   * @param {Array} events - Events array
+   */
+  renderEvents(events) {
+    const eventsList = document.querySelector('.events-list');
+    if (!eventsList) return;
+
+    eventsList.innerHTML = events.map(event => `
+      <div class="event-item">
+        <div class="event-time">${event.time}</div>
+        <div class="event-details">
+          <h4 class="event-title">${event.title}</h4>
+          <p class="event-location">${event.location}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /**
+   * Handle search functionality
+   * @param {string} query - Search query
+   */
+  handleSearch(query) {
+    if (query.length < 2) return;
+
+    // Mock search - replace with actual API calls
+    console.log('Searching for:', query);
     
-//     if (isMobile && sidebar && !sidebar.classList.contains('collapsed')) {
-//       // Auto-collapse sidebar on mobile
-//       window.sidebarManager.collapseSidebar();
-//     }
-//   }
+    // Implement search logic here
+    this.performSearch(query);
+  }
 
-//   // Load dashboard data
-//   loadDashboardData() {
-//     // Load statistics
-//     this.loadStatistics();
-    
-//     // Load upcoming events
-//     this.loadUpcomingEvents();
-    
-//     // Load recent activity
-//     this.loadRecentActivity();
-//   }
+  /**
+   * Perform search
+   * @param {string} query - Search query
+   */
+  performSearch(query) {
+    // Mock search results
+    const results = [
+      { type: 'event', title: 'اجتماع فريق العمل', date: '2024-01-15' },
+      { type: 'task', title: 'تسليم المشروع', date: '2024-01-16' }
+    ];
 
-//   // Load statistics
-//   loadStatistics() {
-//     // Simulate loading statistics
-//     const stats = {
-//       monthlyEvents: 24,
-//       todayEvents: 8,
-//       completedEvents: 156,
-//       achievementRate: 89
-//     };
+    this.displaySearchResults(results);
+  }
 
-//     // Update stat cards
-//     const statNumbers = document.querySelectorAll('.stat-number');
-//     if (statNumbers.length >= 4) {
-//       statNumbers[0].textContent = stats.monthlyEvents;
-//       statNumbers[1].textContent = stats.todayEvents;
-//       statNumbers[2].textContent = stats.completedEvents;
-//       statNumbers[3].textContent = `${stats.achievementRate}%`;
-//     }
-//   }
+  /**
+   * Display search results
+   * @param {Array} results - Search results
+   */
+  displaySearchResults(results) {
+    // Implement search results display
+    console.log('Search results:', results);
+  }
 
-//   // Load upcoming events
-//   loadUpcomingEvents() {
-//     // Events are already in HTML, but you could load them dynamically here
-//     console.log('Upcoming events loaded');
-//   }
+  /**
+   * Handle user logout
+   */
+  handleLogout() {
+    // Clear authentication data
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
 
-//   // Load recent activity
-//   loadRecentActivity() {
-//     // Activity items are already in HTML, but you could load them dynamically here
-//     console.log('Recent activity loaded');
-//   }
+    // Redirect to login page
+    window.location.href = 'index.html';
+  }
+}
 
-//   // Refresh dashboard data
-//   refreshDashboard() {
-//     this.loadDashboardData();
-//   }
-
-//   // Get dashboard statistics
-//   getDashboardStats() {
-//     return {
-//       monthlyEvents: parseInt(document.querySelector('.stat-number')?.textContent) || 0,
-//       todayEvents: parseInt(document.querySelectorAll('.stat-number')[1]?.textContent) || 0,
-//       completedEvents: parseInt(document.querySelectorAll('.stat-number')[2]?.textContent) || 0,
-//       achievementRate: parseInt(document.querySelectorAll('.stat-number')[3]?.textContent) || 0
-//     };
-//   }
-// }
-
-// // Initialize dashboard manager
-// const dashboardManager = new DashboardManager();
-
-// // Export for use in other modules
-// window.dashboardManager = dashboardManager;
+// Initialize dashboard when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  new DashboardManager();
+});
