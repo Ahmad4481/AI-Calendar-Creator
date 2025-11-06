@@ -37,6 +37,7 @@
   .dashboard-grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
+    gap: var(--space-4);
   }
 }
 
@@ -50,6 +51,20 @@
   .main-content {
     overflow-y: auto;
     overflow-x: hidden;
+  }
+  
+  .dashboard-grid {
+    gap: var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: var(--space-3);
+  }
+  
+  .dashboard-grid {
+    gap: var(--space-2);
   }
 }
 

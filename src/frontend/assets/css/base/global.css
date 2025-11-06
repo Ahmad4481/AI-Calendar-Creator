@@ -170,19 +170,17 @@ textarea::placeholder {
 /* Enhanced Button Styles */
 button,
 .btn {
-  padding: 0.7rem 1.2rem !important;
-  border: none !important;
-  border-radius: calc(var(--radius) * 1.2) !important;
-  font-size: var(--text-sm) !important;
-  font-weight: var(--font-weight-medium) !important;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: calc(var(--radius) * 1.2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer !important;
-  transition: all var(--transition-normal) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: all var(--transition-normal);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-button::before,
+/* button::before,
 .btn::before {
   content: '';
   position: absolute;
@@ -192,23 +190,22 @@ button::before,
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.5s;
-}
+} */
 
 button:hover,
 .btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) ;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-button:hover::before,
+/* button:hover::before,
 .btn:hover::before {
-  left: 100% !important;
+  left: 100%;
 }
 
 button:active,
 .btn:active {
   transform: translateY(0) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-}
-
+} */
 

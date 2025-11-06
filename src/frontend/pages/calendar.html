@@ -9,8 +9,8 @@
     referrerpolicy="no-referrer">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"> 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/floating-ui@1.2.9/dist/floating-ui.min.css"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/floating-ui@1.2.9/dist/floating-ui.min.css">
   <link rel="stylesheet" href="../assets/css/base/global.css">
   <link rel="stylesheet" href="../assets/css/components/calendar-form.css">
   <link rel="stylesheet" href="../assets/css/components/calendar-events.css">
@@ -146,9 +146,7 @@
     <div class="modal-container">
       <div class="modal-header">
         <h2>إضافة تقويم جديد</h2>
-        <button class="modal-close" id="closeModal" aria-label="إغلاق">
-          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-        </button>
+        <button class="modal-close" id="closeModal">✕</button>
       </div>
 
       <div class="modal-body">
@@ -217,9 +215,7 @@
                 </div>
               </div>
               <button type="button" class="btn btn-secondary" id="addSleepSchedule">
-                <span class="btn-icon" aria-hidden="true">
-                  <i class="fa-solid fa-plus"></i>
-                </span>
+                <span class="btn-icon">➕</span>
                 إضافة وقت نوم آخر
               </button>
             </div>
@@ -270,9 +266,7 @@
                   </div>
                 </div>
                 <button type="button" class="btn btn-secondary" id="addSpecialDate">
-                  <span class="btn-icon" aria-hidden="true">
-                    <i class="fa-solid fa-plus"></i>
-                  </span>
+                  <span class="btn-icon">➕</span>
                   إضافة تاريخ خاص
                 </button>
               </div>
@@ -325,9 +319,7 @@
                       </div>
                     </div>
                     <button type="button" class="btn btn-secondary btn-sm add-preferred-time">
-                      <span class="btn-icon" aria-hidden="true">
-                        <i class="fa-solid fa-plus"></i>
-                      </span>
+                      <span class="btn-icon">➕</span>
                       إضافة وقت مفضل
                     </button>
                   </div>
@@ -348,9 +340,7 @@
                 </div>
               </div>
               <button type="button" class="btn btn-secondary" id="addGoal">
-                <span class="btn-icon" aria-hidden="true">
-                  <i class="fa-solid fa-plus"></i>
-                </span>
+                <span class="btn-icon">➕</span>
                 إضافة هدف آخر
               </button>
             </div>
@@ -360,13 +350,13 @@
           <div class="form-navigation">
             <button type="button" class="btn btn-secondary" id="prevStep" disabled>السابق</button>
             <button type="button" class="btn btn-primary" id="nextStep">التالي</button>
-            <button type="submit" class="btn btn-success" id="submitForm" style="display: none;">إنشاء التقويم</button>
+            <button type="submit" class="btn btn-success" id="submitForm" style="display: none;">إنشاء
+              التقويم</button>
           </div>
         </form>
       </div>
     </div>
   </div>
-
   <!-- Add/Edit Event Modal -->
   <div class="modal-overlay" id="eventModal">
     <div class="modal-container">
@@ -430,8 +420,8 @@
   <script src="../assets/js/core/sidebar.js"></script>
   <script src="../assets/js/components/calendar-events.js"></script>
   <script src="../assets/js/components/calendar-chat.js"></script>
-  <script src="../assets/js/components/calendar-form-helpers.js"></script>
-  <script src="../assets/js/components/calendar-form-core.js"></script>
+  <!-- <script src="../assets/js/components/calendar-form-helpers.js"></script>
+  <script src="../assets/js/components/calendar-form-core.js"></script> -->
   <script src="../assets/js/components/calendar-form.js"></script>
 </body>
 
