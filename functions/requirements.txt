@@ -1,0 +1,12 @@
+# Firebase Functions Python Dependencies
+# تبعيات Firebase Functions
+
+# Firebase
+firebase-functions>=0.4.0
+firebase-admin>=6.0.0
+
+# HTTP Requests
+requests>=2.31.0
+
+# Type hints (optional, for development)
+# typing-extensions>=4.0.0

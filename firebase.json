@@ -1,0 +1,29 @@
+{
+  "hosting": {
+    "public": "src/frontend/",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "runtime": "python312",
+      "ignore": [
+        "venv",
+        "__pycache__",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local",
+        "*.pyc",
+        "node_modules",
+        "src",
+        "lib"
+      ]
+    }
+  ]
+}

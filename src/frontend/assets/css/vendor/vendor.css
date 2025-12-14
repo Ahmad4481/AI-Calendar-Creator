@@ -1,0 +1,17 @@
+/* ============================================
+   Vendor CSS - Third-party library styles
+   ============================================ */
+
+/* FullCalendar - CSS is bundled with JS, using CDN in HTML */
+/* Note: FullCalendar CSS is loaded via CDN in HTML files */
+
+/* Flatpickr - Date/Time picker */
+@import './flatpickr-vendor.css';
+
+/* Choices.js - Select dropdown library */
+@import './choices-vendor.css';
+
+/* Font Awesome - Icon library */
+@import './fontawesome-vendor.css';
+
+/* Floating UI - No CSS needed (JavaScript positioning library) */

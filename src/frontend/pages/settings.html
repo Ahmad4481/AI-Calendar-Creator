@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563EB">
+    <title>التفضيلات - منشئ التقويم</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.svg">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/vendor/vendor.css">
+    <link rel="stylesheet" href="/assets/css/base/global.css">
+    <link rel="stylesheet" href="/assets/css/components/buttons.css">
+    <link rel="stylesheet" href="/assets/css/components/sidebar.css">
+    <link rel="stylesheet" href="/assets/css/components/layout.css">
+    <link rel="stylesheet" href="/assets/css/pages/settings.css">
+</head>
+<body>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="فتح القائمة">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar collapsed">
+            <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="إغلاق القائمة">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="sidebar-header">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="logo">
+                    <img src="/assets/images/logo.svg" alt="شعار" class="logo-icon">
+                    <h2>منشئ التقويم</h2>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/pages/dashborad.html" class="nav-link">
+                            <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+                            <span class="nav-text">الرئيسية</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/pages/calendar.html" class="nav-link">
+                            <span class="nav-icon"><i class="fa-solid fa-calendar-days"></i></span>
+                            <span class="nav-text">التقويم</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/pages/settings.html" class="nav-link">
+                            <span class="nav-icon"><i class="fa-solid fa-gear"></i></span>
+                            <span class="nav-text">التفضيلات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name" id="userName">...</div>
+                        <div class="user-email" id="userEmail">...</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                    <span class="nav-text">تسجيل الخروج</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <h1><i class="fa-solid fa-sliders"></i> التفضيلات</h1>
+                    <p>خصص تجربتك وساعد الذكاء الاصطناعي على فهمك بشكل أفضل</p>
+                </div>
+                <button class="btn-toggle" id="themeToggle">
+                    <i class="fa-solid fa-moon theme-icon"></i>
+                </button>
+            </header>
+
+            <!-- Settings Content -->
+            <div class="dashboard-content">
+                <form id="settingsForm" class="settings-content">
+                    
+                    <!-- 1. Unavailable Times -->
+                    <section class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon"><i class="fa-regular fa-clock"></i></div>
+                            <div class="section-title">
+                                <h2>الأوقات غير المتاحة</h2>
+                                <p>حدد أوقات انشغالك (دوام، دراسة) التي لا يمكن جدولة مهام فيها</p>
+                            </div>
+                        </div>
+                        
+                        <div id="unavailableTimesList" class="items-list"></div>
+                        
+                        <div class="add-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>من</label>
+                                    <input type="time" id="unavailStartTime" class="form-input" value="08:00">
+                                </div>
+                                <div class="form-group">
+                                    <label>إلى</label>
+                                    <input type="time" id="unavailEndTime" class="form-input" value="14:00">
+                                </div>
+                                <div class="form-group">
+                                    <label>السبب</label>
+                                    <input type="text" id="unavailReason" class="form-input" placeholder="دوام، جامعة...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>الأيام</label>
+                                <div class="radio-grid" id="unavailDays">
+                                    <label class="radio-card">
+                                        <input type="checkbox" value="sunday">
+                                        <div class="radio-content">أحد</div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="checkbox" value="monday">
+                                        <div class="radio-content">اثنين</div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="checkbox" value="tuesday">
+                                        <div class="radio-content">ثلاثاء</div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="checkbox" value="wednesday">
+                                        <div class="radio-content">أربعاء</div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="checkbox" value="thursday">
+                                        <div class="radio-content">خميس</div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="checkbox" value="friday">
+                                        <div class="radio-content">جمعة</div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="checkbox" value="saturday">
+                                        <div class="radio-content">سبت</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="button" id="addUnavailableTime" class="btn-add">
+                                <i class="fa-solid fa-plus"></i> إضافة وقت
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- 2. Goals -->
+                    <section class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon"><i class="fa-solid fa-bullseye"></i></div>
+                            <div class="section-title">
+                                <h2>الأهداف</h2>
+                                <p>ما الذي تريد تحقيقه؟ (يساعد في توليد الأسئلة الذكية)</p>
+                            </div>
+                        </div>
+                        
+                        <div id="goalsList" class="items-list"></div>
+                        
+                        <div class="add-form">
+                            <div class="form-group">
+                                <label>اسم الهدف</label>
+                                <input type="text" id="goalName" class="form-input" placeholder="مثال: تعلم بايثون، إنهاء المشروع...">
+                            </div>
+                            <div class="form-group">
+                                <label>الوصف</label>
+                                <input type="text" id="goalDescription" class="form-input" placeholder="تفاصيل إضافية...">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>الموعد النهائي</label>
+                                    <input type="date" id="goalDeadline" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>الساعات المتوقعة</label>
+                                    <input type="number" id="goalHours" class="form-input" min="1" placeholder="مثلاً 20">
+                                </div>
+                                <div class="form-group">
+                                    <label>الأولوية</label>
+                                    <select id="goalPriority" class="form-input">
+                                        <option value="high">عالية</option>
+                                        <option value="medium" selected>متوسطة</option>
+                                        <option value="low">منخفضة</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" id="addGoal" class="btn-add">
+                                <i class="fa-solid fa-plus"></i> إضافة هدف
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- 3. Fixed Tasks -->
+                    <section class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon"><i class="fa-solid fa-thumbtack"></i></div>
+                            <div class="section-title">
+                                <h2>المهام الثابتة</h2>
+                                <p>روتينك اليومي أو الأسبوعي (صلاة، رياضة)</p>
+                            </div>
+                        </div>
+                        
+                        <div id="fixedTasksList" class="items-list"></div>
+                        
+                        <div class="add-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>اسم المهمة</label>
+                                    <input type="text" id="fixedTaskName" class="form-input" placeholder="صلاة، رياضة...">
+                                </div>
+                                <div class="form-group">
+                                    <label>الأولوية</label>
+                                    <select id="fixedTaskPriority" class="form-input">
+                                        <option value="high">عالية</option>
+                                        <option value="medium" selected>متوسطة</option>
+                                        <option value="low">منخفضة</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>من</label>
+                                    <input type="time" id="fixedTaskStart" class="form-input" value="17:00">
+                                </div>
+                                <div class="form-group">
+                                    <label>إلى</label>
+                                    <input type="time" id="fixedTaskEnd" class="form-input" value="17:30">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>الأيام</label>
+                                <div class="radio-grid" id="fixedTaskDays">
+                                    <label class="radio-card"><input type="checkbox" value="sunday" checked><div class="radio-content">أحد</div></label>
+                                    <label class="radio-card"><input type="checkbox" value="monday" checked><div class="radio-content">اثنين</div></label>
+                                    <label class="radio-card"><input type="checkbox" value="tuesday" checked><div class="radio-content">ثلاثاء</div></label>
+                                    <label class="radio-card"><input type="checkbox" value="wednesday" checked><div class="radio-content">أربعاء</div></label>
+                                    <label class="radio-card"><input type="checkbox" value="thursday" checked><div class="radio-content">خميس</div></label>
+                                    <label class="radio-card"><input type="checkbox" value="friday" checked><div class="radio-content">جمعة</div></label>
+                                    <label class="radio-card"><input type="checkbox" value="saturday" checked><div class="radio-content">سبت</div></label>
+                                </div>
+                            </div>
+                            <button type="button" id="addFixedTask" class="btn-add">
+                                <i class="fa-solid fa-plus"></i> إضافة مهمة
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- 4. Personal Info -->
+                    <section class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon"><i class="fa-solid fa-user"></i></div>
+                            <div class="section-title">
+                                <h2>معلومات شخصية</h2>
+                                <p>لضبط نمط حياتك</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>نوع المهنة</label>
+                            <div class="radio-grid">
+                                <label class="radio-card">
+                                    <input type="radio" name="userType" value="student" checked>
+                                    <div class="radio-content"><i class="fa-solid fa-graduation-cap"></i> طالب</div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="userType" value="employee">
+                                    <div class="radio-content"><i class="fa-solid fa-briefcase"></i> موظف</div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="userType" value="freelancer">
+                                    <div class="radio-content"><i class="fa-solid fa-laptop"></i> عمل حر</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>وقت النوم المعتاد</label>
+                                <input type="time" id="sleepTime" class="form-input" value="23:00">
+                            </div>
+                            <div class="form-group">
+                                <label>كثافة الجدول المفضلة</label>
+                                <select id="calendarDensity" class="form-input">
+                                    <option value="relaxed">مرن (ضغط خفيف)</option>
+                                    <option value="balanced" selected>متوازن</option>
+                                    <option value="intensive">مكثف (إنتاجية عالية)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 5. Dynamic AI Questions -->
+                    <section class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon"><i class="fa-solid fa-robot"></i></div>
+                            <div class="section-title">
+                                <h2>أسئلة الذكاء الاصطناعي</h2>
+                                <p>اضغط على "توليد" ليطرح عليك الذكاء الاصطناعي أسئلة بناءً على أهدافك</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" id="generateQuestionsBtn" class="btn-generate">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> توليد أسئلة ذكية
+                            </button>
+                        </div>
+
+                        <div id="aiQuestionsContainer" class="ai-questions-container">
+                            <!-- الأسئلة المولدة ستظهر هنا -->
+                        </div>
+                    </section>
+
+                    <!-- Save Actions -->
+                    <div class="form-footer">
+                        <button type="submit" class="btn-save">
+                            <i class="fa-solid fa-check"></i> حفظ التفضيلات
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/assets/js/core/theme.js"></script>
+    <script type="module" src="/assets/js/core/sidebar.js"></script>
+    <script type="module" src="/assets/js/pages/settings.js"></script>
+</body>
+</html>

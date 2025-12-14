@@ -1,0 +1,41 @@
+{
+  "name": "ai-calendar-creator",
+  "version": "1.0.0",
+  "description": "AI Calendar Creator - منشئ التقويم الذكي",
+  "type": "module",
+  "exports": {
+    "./firebase": "./src/frontend/assets/js/core/firebase.js",
+    "./config": "./src/frontend/assets/js/core/config.js",
+    "./auth": "./src/frontend/assets/js/core/utils/auth.js",
+    "./calendar-chat": "./src/frontend/assets/js/components/calendar-chat.js",
+    "./calendar-events": "./src/frontend/assets/js/components/calendar-events.js",
+    "./calendar-form": "./src/frontend/assets/js/components/calendar-form.js",
+    "./sidebar": "./src/frontend/assets/js/core/sidebar.js",
+    "./theme": "./src/frontend/assets/js/core/theme.js",
+    "./dashboard": "./src/frontend/assets/js/pages/dashboard.js",
+    "./index": "./src/frontend/assets/js/pages/index.js",
+    "./preferences": "./src/frontend/assets/js/utils/Preferences.js",
+    "./prompt-builder": "./src/frontend/assets/js/utils/PromptBuilder.js",
+    "./components/*": "./src/frontend/assets/js/components/*.js",
+    "./core/*": "./src/frontend/assets/js/core/*.js",
+    "./pages/*": "./src/frontend/assets/js/pages/*.js",
+    "./utils/*": "./src/frontend/assets/js/utils/*.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
+    "@floating-ui/core": "^1.7.3",
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@fullcalendar/core": "^6.1.19",
+    "@fullcalendar/daygrid": "^6.1.19",
+    "@fullcalendar/list": "^6.1.19",
+    "@fullcalendar/rrule": "^6.1.19",
+    "@fullcalendar/timegrid": "^6.1.19",
+    "choices.js": "^11.1.0",
+    "flatpickr": "^4.6.13",
+    "rrule": "^2.8.1"
+  }
+}

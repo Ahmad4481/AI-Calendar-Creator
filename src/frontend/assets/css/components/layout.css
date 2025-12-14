@@ -1,17 +1,20 @@
 /* Dashboard Layout */
 .dashboard-container {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: var(--background);
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-/* Main Content */
+/* Main Content - Full width with top padding for menu button */
 .main-content {
   flex: 1;
   overflow: visible;
   min-height: 100vh;
+  width: 100%;
+  padding-top: 70px; /* Space for menu toggle button */
 }
 
 /* Dashboard Content */
@@ -68,10 +71,7 @@
   }
 }
 
-/* Animation for smooth transitions */
-* {
-  transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
-}
+/* Removed global * transition for performance */
 
 
 

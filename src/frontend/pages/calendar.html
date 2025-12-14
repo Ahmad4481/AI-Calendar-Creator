@@ -5,27 +5,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="صفحة إعداد التقويم - منشئ التقويم الذكي">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    referrerpolicy="no-referrer">
+  
+  <!-- Theme & App Meta -->
+  <meta name="theme-color" content="#2563EB">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="التقويم - منشئ التقويم">
+  <meta property="og:description" content="صفحة إعداد التقويم - منشئ التقويم الذكي">
+  <meta property="og:locale" content="ar_SA">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  
+  <!-- FullCalendar CSS - loaded via CDN (CSS is bundled with JS) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/floating-ui@1.2.9/dist/floating-ui.min.css">
+  
+  <!-- Vendor CSS - Third-party libraries from npm packages -->
+  <link rel="stylesheet" href="../assets/css/vendor/vendor.css">
+  
+  <!-- Base CSS -->
   <link rel="stylesheet" href="../assets/css/base/global.css">
+  <link rel="stylesheet" href="../assets/css/components/buttons.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
   <link rel="stylesheet" href="../assets/css/components/calendar-form.css">
   <link rel="stylesheet" href="../assets/css/components/calendar-events.css">
+  <link rel="stylesheet" href="../assets/css/components/event-form.css">
+  <link rel="stylesheet" href="../assets/css/components/fullcalendar.css">
+  <link rel="stylesheet" href="../assets/css/components/ai-chat.css">
+  <!-- Custom vendor overrides (after vendor.css) -->
+  <link rel="stylesheet" href="../assets/css/vendor/flatpickr.css">
+  <link rel="stylesheet" href="../assets/css/vendor/choices.css">
   <link rel="stylesheet" href="../assets/css/components/sidebar.css">
   <link rel="stylesheet" href="../assets/css/components/layout.css">
   <link rel="stylesheet" href="../assets/css/components/stats.css">
   <link rel="stylesheet" href="../assets/css/components/header.css">
   <link rel="stylesheet" href="../assets/css/components/widgets.css">
+  <link rel="stylesheet" href="../assets/css/components/ai-questions.css">
   <title>تقويم الأحداث - منشئ التقويم</title>
 </head>
 
 <body>
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="فتح القائمة">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  
+  <!-- Mobile Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
   <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar collapsed">
+      <!-- Mobile Close Button -->
+      <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="إغلاق القائمة">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
       <div class="sidebar-header">
         <button class="sidebar-toggle" id="sidebarToggle">
           <span></span>
@@ -33,17 +73,23 @@
           <span></span>
         </button>
         <div class="logo">
-          <div class="logo-icon" aria-hidden="true">
-            <i class="fa-solid fa-calendar-days"></i>
-          </div>
+          <img src="../assets/images/logo.svg" alt="شعار منشئ التقويم" class="logo-icon" style="background: none; box-shadow: none;">
           <h2>منشئ التقويم</h2>
         </div>
       </div>
 
       <nav class="sidebar-nav">
         <ul class="nav-list">
+          <li class="nav-item">
+            <a href="/pages/dashborad.html" class="nav-link">
+              <span class="nav-icon" aria-hidden="true">
+                <i class="fa-solid fa-house"></i>
+              </span>
+              <span class="nav-text">الرئيسية</span>
+            </a>
+          </li>
           <li class="nav-item active">
-            <a href="#" class="nav-link">
+            <a href="/pages/calendar.html" class="nav-link">
               <span class="nav-icon" aria-hidden="true">
                 <i class="fa-solid fa-calendar-days"></i>
               </span>
@@ -51,11 +97,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="dashborad.html" class="nav-link">
+            <a href="/pages/settings.html" class="nav-link">
               <span class="nav-icon" aria-hidden="true">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-gear"></i>
               </span>
-              <span class="nav-text">الرئيسية</span>
+              <span class="nav-text">الإعدادات</span>
             </a>
           </li>
         </ul>
@@ -81,50 +127,44 @@
     <main class="main-content">
       <!-- Header -->
       <header class="dashboard-header">
-        <div class="header-left">
-          <h1>تقويم الأحداث</h1>
-          <p class="page-subtitle">أضف الأحداث بسهولة ونظم يومك في مكان واحد</p>
-        </div>
-        <div class="header-right">
-          <button class="theme-toggle" id="themeToggle">
-            <i class="fa-solid fa-moon theme-icon" aria-hidden="true"></i>
-          </button>
-        </div>
+        <button class="btn-toggle" id="aiChatToggle" aria-label="فتح محادثة AI">
+          <i class="fa-solid fa-robot" aria-hidden="true"></i>
+        </button>
+        <button class="btn-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon theme-icon" aria-hidden="true"></i>
+        </button>
       </header>
 
       <div class="calendar-content">
         <div class="calendar-ai-layout">
-          <aside class="ai-chat-panel" aria-label="محادثة مع الذكاء الاصطناعي">
-            <header class="ai-chat-header">
-              <div>
-                <h2>محادثة مع AI</h2>
-                <p class="ai-chat-subtitle">مدعومة بـ Qwen Plus</p>
-              </div>
-            </header>
+          <aside class="ai-chat-panel" id="aiChatPanel" aria-label="محادثة مع الذكاء الاصطناعي">
 
             <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-live="polite"></div>
 
             <form class="ai-chat-input" id="aiChatForm">
               <label class="visually-hidden" for="aiChatMessage">إرسال رسالة إلى الذكاء الاصطناعي</label>
-              <textarea id="aiChatMessage" name="message" rows="2"
-                placeholder="اسأل Qwen Plus عن أي شيء يتعلق بالتقويم..." required>
+              <div class="ai-chat-input-wrapper">
+                <textarea id="aiChatMessage" name="message" rows="2"
+                  placeholder="اسأل عن أي شيء يتعلق بالتقويم أو الأحداث..." required>
               </textarea>
-              <button type="submit" class="ai-chat-send" aria-label="إرسال الرسالة">
-                <i class="fa-solid fa-paper-plane"></i>
-              </button>
+                <button type="submit" class="ai-chat-send" aria-label="إرسال الرسالة">
+                  <i class="fa-solid fa-paper-plane"></i>
+                </button>
+              </div>
             </form>
           </aside>
 
           <div class="calendar-main">
             <section class="calendar-panel">
+
               <div class="calendar-panel-header">
-                <div>
-                  <h2>تقويم الأحداث</h2>
-                  <p>حدد يومًا لإضافة أحداث جديدة أو استعراض الأحداث القادمة.</p>
-                </div>
                 <button type="button" class="btn btn-primary" id="openEventModalBtn">
                   <span class="btn-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
                   إضافة حدث
+                </button>
+                <button class="add-system-btn" type="button" id="addSystemTrigger" aria-label="إضافة نظامك">
+                  <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                  أضف نظامك
                 </button>
               </div>
               <div id="eventCalendar" class="calendar-widget"></div>
@@ -135,11 +175,6 @@
   </div>
   </main>
   </div>
-
-  <button class="add-system-btn" type="button" id="addSystemTrigger" aria-label="Add Your System">
-    <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-    Add Your System
-  </button>
 
   <!-- Add Calendar Modal -->
   <div class="modal-overlay" id="calendarModal">
@@ -154,195 +189,301 @@
         <div class="form-progress">
           <div class="progress-step active" data-step="1">
             <div class="step-number">1</div>
-            <div class="step-label">المعلومات الأساسية</div>
+            <div class="step-label">الأساسيات</div>
           </div>
           <div class="progress-step" data-step="2">
             <div class="step-number">2</div>
-            <div class="step-label">جدول النوم</div>
+            <div class="step-label">الأهداف</div>
           </div>
           <div class="progress-step" data-step="3">
             <div class="step-number">3</div>
-            <div class="step-label">إعدادات اليوم</div>
-          </div>
-          <div class="progress-step" data-step="4">
-            <div class="step-number">4</div>
-            <div class="step-label">الأهداف</div>
+            <div class="step-label">الإعدادات</div>
           </div>
         </div>
 
         <!-- Form Steps -->
         <form class="calendar-form" id="calendarForm">
-          <!-- Step 1: Basic Info -->
+          <!-- Step 1: الأساسيات (الأوقات غير المتاحة + المهام الثابتة) -->
           <div class="form-step active" data-step="1">
             <div class="step-content">
-              <h3>المعلومات الأساسية</h3>
-              <div class="form-group">
-                <label for="calendarName">اسم التقويم</label>
-                <input type="text" id="calendarName" name="calendarName" placeholder="أدخل اسم التقويم" required>
-              </div>
-              <div class="form-group">
-                <label for="calendarScope">نطاق التقويم</label>
-                <select id="calendarScope" name="calendarScope" required>
-                  <option value="">اختر نطاق التقويم</option>
-                  <option value="daily">يومي</option>
-                  <option value="weekly">أسبوعي</option>
-                  <option value="monthly">شهري</option>
-                  <option value="yearly">سنوي</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 2: Sleep Schedule -->
-          <div class="form-step" data-step="2">
-            <div class="step-content">
-              <h3>جدول النوم</h3>
-              <div class="sleep-schedules" id="sleepSchedules">
-                <div class="sleep-schedule-item">
+              <h3>🚫 الأوقات غير المتاحة</h3>
+              <p class="step-description">حدد الأوقات التي لا يمكنك العمل فيها (دوام، دراسة، التزامات)</p>
+              
+              <div class="unavailable-times" id="unavailableTimes">
+                <div class="unavailable-time-item">
                   <div class="form-row">
                     <div class="form-group">
-                      <label>وقت بداية النوم</label>
-                      <input type="time" name="sleepStart" value="22:00">
+                      <label>من الساعة</label>
+                      <input type="time" name="unavailableStart" value="08:00">
                     </div>
                     <div class="form-group">
-                      <label>وقت نهاية النوم</label>
-                      <input type="time" name="sleepEnd" value="06:00">
+                      <label>إلى الساعة</label>
+                      <input type="time" name="unavailableEnd" value="15:00">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>الأيام</label>
+                    <div class="days-selector">
+                      <label class="day-checkbox"><input type="checkbox" name="unavailableDays" value="sunday"> أحد</label>
+                      <label class="day-checkbox"><input type="checkbox" name="unavailableDays" value="monday" checked> اثنين</label>
+                      <label class="day-checkbox"><input type="checkbox" name="unavailableDays" value="tuesday" checked> ثلاثاء</label>
+                      <label class="day-checkbox"><input type="checkbox" name="unavailableDays" value="wednesday" checked> أربعاء</label>
+                      <label class="day-checkbox"><input type="checkbox" name="unavailableDays" value="thursday" checked> خميس</label>
+                      <label class="day-checkbox"><input type="checkbox" name="unavailableDays" value="friday"> جمعة</label>
+                      <label class="day-checkbox"><input type="checkbox" name="unavailableDays" value="saturday"> سبت</label>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group flex-grow">
+                      <label>السبب (اختياري)</label>
+                      <input type="text" name="unavailableReason" placeholder="مثال: دوام / دراسة">
                     </div>
                     <div class="form-group">
-                      <button type="button" class="btn btn-danger btn-sm remove-sleep-schedule">حذف</button>
+                      <button type="button" class="btn btn-danger btn-sm remove-unavailable-time">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <button type="button" class="btn btn-secondary" id="addSleepSchedule">
-                <span class="btn-icon">➕</span>
-                إضافة وقت نوم آخر
+              <button type="button" class="btn btn-secondary" id="addUnavailableTime">
+                <span class="btn-icon"><i class="fa-solid fa-plus"></i></span>
+                إضافة وقت غير متاح
+              </button>
+
+              <hr class="section-divider" style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border);">
+
+              <h3>📌 المهام الثابتة</h3>
+              <p class="step-description">المهام المتكررة يومياً أو أسبوعياً (صلاة، رياضة، وجبات)</p>
+              
+              <div class="fixed-tasks" id="fixedTasks">
+                <div class="fixed-task-item">
+                  <div class="form-row">
+                    <div class="form-group flex-grow">
+                      <label>اسم المهمة</label>
+                      <input type="text" name="fixedTaskName" placeholder="مثال: صلاة / رياضة">
+                    </div>
+                    <div class="form-group">
+                      <label>الأولوية</label>
+                      <select name="fixedTaskPriority">
+                        <option value="high">عالية</option>
+                        <option value="medium" selected>متوسطة</option>
+                        <option value="low">منخفضة</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>من الساعة</label>
+                      <input type="time" name="fixedTaskStart" value="17:00">
+                    </div>
+                    <div class="form-group">
+                      <label>إلى الساعة</label>
+                      <input type="time" name="fixedTaskEnd" value="18:00">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>الأيام</label>
+                    <div class="days-selector">
+                      <label class="day-checkbox"><input type="checkbox" name="fixedTaskDays" value="sunday" checked> أحد</label>
+                      <label class="day-checkbox"><input type="checkbox" name="fixedTaskDays" value="monday" checked> اثنين</label>
+                      <label class="day-checkbox"><input type="checkbox" name="fixedTaskDays" value="tuesday" checked> ثلاثاء</label>
+                      <label class="day-checkbox"><input type="checkbox" name="fixedTaskDays" value="wednesday" checked> أربعاء</label>
+                      <label class="day-checkbox"><input type="checkbox" name="fixedTaskDays" value="thursday" checked> خميس</label>
+                      <label class="day-checkbox"><input type="checkbox" name="fixedTaskDays" value="friday" checked> جمعة</label>
+                      <label class="day-checkbox"><input type="checkbox" name="fixedTaskDays" value="saturday" checked> سبت</label>
+                    </div>
+                  </div>
+                  <div class="form-group text-left">
+                    <button type="button" class="btn btn-danger btn-sm remove-fixed-task">
+                      <i class="fa-solid fa-trash"></i> حذف المهمة
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary" id="addFixedTask">
+                <span class="btn-icon"><i class="fa-solid fa-plus"></i></span>
+                إضافة مهمة ثابتة
               </button>
             </div>
           </div>
 
-          <!-- Step 3: Day Duration Settings -->
-          <div class="form-step" data-step="3">
+          <!-- Step 2: الأهداف -->
+          <div class="form-step" data-step="2">
             <div class="step-content">
-              <h3>إعدادات اليوم</h3>
-
-              <!-- Weekdays Settings -->
-              <div class="settings-section">
-                <h4>الأيام العادية (أيام الأسبوع)</h4>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label>وقت البداية</label>
-                    <input type="time" name="weekdayStart" value="08:00">
-                  </div>
-                  <div class="form-group">
-                    <label>وقت النهاية</label>
-                    <input type="time" name="weekdayEnd" value="17:00">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Special Dates -->
-              <div class="settings-section">
-                <h4>التواريخ الخاصة</h4>
-                <div class="special-dates" id="specialDates">
-                  <div class="special-date-item">
-                    <div class="form-row">
-                      <div class="form-group">
-                        <label>التاريخ</label>
-                        <input type="date" name="specialDate">
-                      </div>
-                      <div class="form-group">
-                        <label>وقت البداية</label>
-                        <input type="time" name="specialStart" value="09:00">
-                      </div>
-                      <div class="form-group">
-                        <label>وقت النهاية</label>
-                        <input type="time" name="specialEnd" value="18:00">
-                      </div>
-                      <div class="form-group">
-                        <button type="button" class="btn btn-danger btn-sm remove-special-date">حذف</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button type="button" class="btn btn-secondary" id="addSpecialDate">
-                  <span class="btn-icon">➕</span>
-                  إضافة تاريخ خاص
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 4: Goals -->
-          <div class="form-step" data-step="4">
-            <div class="step-content">
-              <h3>الأهداف</h3>
+              <h3>🎯 الأهداف والتكاليف</h3>
+              <p class="step-description">اكتب هدفك وسيقوم الذكاء الاصطناعي بطرح أسئلة لفهمه أفضل</p>
+              
               <div class="goals" id="goals">
                 <div class="goal-item">
-                  <div class="form-group">
-                    <label>اسم الهدف</label>
-                    <input type="text" name="goalName" placeholder="أدخل اسم الهدف">
-                  </div>
-                  <div class="form-group">
-                    <label>الأولوية</label>
-                    <select name="goalPriority">
-                      <option value="high">عالي</option>
-                      <option value="medium">متوسط</option>
-                      <option value="low">منخفض</option>
-                    </select>
-                  </div>
-
-                  <!-- Preferred Times -->
-                  <div class="preferred-times">
-                    <h5>الأوقات المفضلة</h5>
-                    <div class="preferred-time-item">
-                      <div class="form-row">
-                        <div class="form-group">
-                          <label>الأيام</label>
-                          <select name="preferredDays" multiple>
-                            <option value="sunday">الأحد</option>
-                            <option value="monday">الاثنين</option>
-                            <option value="tuesday">الثلاثاء</option>
-                            <option value="wednesday">الأربعاء</option>
-                            <option value="thursday">الخميس</option>
-                            <option value="friday">الجمعة</option>
-                            <option value="saturday">السبت</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label>الوقت المفضل</label>
-                          <input type="time" name="preferredTime" value="10:00">
-                        </div>
-                        <div class="form-group">
-                          <button type="button" class="btn btn-danger btn-sm remove-preferred-time">حذف</button>
-                        </div>
+                  <!-- معلومات الهدف الأساسية -->
+                  <div class="goal-header">
+                    <div class="form-group">
+                      <label>الهدف / التكليف</label>
+                      <div class="goal-input-wrapper">
+                        <input type="text" name="goalName" class="goal-name-input" placeholder="مثال: إنهاء مشروع البرمجة">
+                        <button type="button" class="btn btn-ai generate-questions-btn" title="توليد أسئلة">
+                          <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </button>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-secondary btn-sm add-preferred-time">
-                      <span class="btn-icon">➕</span>
-                      إضافة وقت مفضل
+                  </div>
+                  
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>الموعد النهائي</label>
+                      <input type="date" name="goalDeadline">
+                    </div>
+                    <div class="form-group">
+                      <label>الوقت المتوقع (ساعات)</label>
+                      <input type="number" name="goalEstimatedHours" placeholder="20" min="1" max="500">
+                    </div>
+                    <div class="form-group">
+                      <label>الأولوية</label>
+                      <select name="goalPriority">
+                        <option value="high">عالية</option>
+                        <option value="medium" selected>متوسطة</option>
+                        <option value="low">منخفضة</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <!-- أسئلة AI الديناميكية - تُولد تلقائياً -->
+                  <div class="goal-ai-questions" style="display: none;">
+                    <div class="ai-questions-header">
+                      <span class="ai-icon">🤖</span>
+                      <span class="ai-questions-title">أسئلة الذكاء الاصطناعي</span>
+                      <span class="ai-loading" style="display: none;">
+                        <i class="fa-solid fa-spinner fa-spin"></i> جاري التفكير...
+                      </span>
+                    </div>
+                    
+                    <div class="ai-generated-questions">
+                      <!-- الأسئلة ستُولد هنا ديناميكياً -->
+                    </div>
+                  </div>
+                  
+                  <div class="form-group text-left">
+                    <button type="button" class="btn btn-danger btn-sm remove-goal">
+                      <i class="fa-solid fa-trash"></i> حذف الهدف
                     </button>
-                  </div>
-
-                  <div class="form-group">
-                    <label>تكرار الهدف</label>
-                    <select name="goalRepeat">
-                      <option value="daily">يومي</option>
-                      <option value="weekly">أسبوعي</option>
-                      <option value="monthly">شهري</option>
-                      <option value="custom">مخصص</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <button type="button" class="btn btn-danger remove-goal">حذف الهدف</button>
                   </div>
                 </div>
               </div>
               <button type="button" class="btn btn-secondary" id="addGoal">
-                <span class="btn-icon">➕</span>
+                <span class="btn-icon"><i class="fa-solid fa-plus"></i></span>
                 إضافة هدف آخر
               </button>
+            </div>
+          </div>
+
+          <!-- Step 3: الإعدادات (معلومات شخصية + تفضيلات) -->
+          <div class="form-step" data-step="3">
+            <div class="step-content">
+              <h3>⚙️ الإعدادات الشخصية</h3>
+              <p class="step-description">تخصيص الجدول ليناسب أسلوب حياتك</p>
+
+              <div class="personal-info-container">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>نوع المستخدم</label>
+                    <select name="userType">
+                      <option value="">اختر...</option>
+                      <option value="student">طالب</option>
+                      <option value="employee">موظف</option>
+                      <option value="freelancer">عمل حر</option>
+                      <option value="business_owner">صاحب عمل</option>
+                      <option value="other">آخر</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>مستوى الطاقة</label>
+                    <select name="energyLevel">
+                      <option value="">اختر...</option>
+                      <option value="morning_person">صباحي (أستيقظ باكراً)</option>
+                      <option value="night_owl">ليلي (أسهر متأخراً)</option>
+                      <option value="balanced">متوازن</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>ساعات النوم المعتادة</label>
+                    <div class="sleep-time-inputs">
+                      <div class="time-input-group">
+                        <label class="sub-label">النوم</label>
+                        <input type="time" name="sleepTime" value="23:00">
+                      </div>
+                      <div class="time-input-group">
+                        <label class="sub-label">الاستيقاظ</label>
+                        <input type="time" name="wakeTime" value="07:00">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="section-divider" style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border);">
+
+              <div class="schedule-preferences-container">
+                <!-- كثافة الجدول -->
+                <div class="preference-section">
+                  <label class="preference-label">كثافة الجدول</label>
+                  <div class="intensity-options">
+                    <label class="intensity-card">
+                      <input type="radio" name="scheduleIntensity" value="relaxed">
+                      <span class="intensity-content">
+                        <span class="intensity-icon">🌿</span>
+                        <span class="intensity-title">مرن</span>
+                        <span class="intensity-desc">فترات راحة كثيرة، ضغط أقل</span>
+                      </span>
+                    </label>
+                    <label class="intensity-card">
+                      <input type="radio" name="scheduleIntensity" value="moderate" checked>
+                      <span class="intensity-content">
+                        <span class="intensity-icon">⚖️</span>
+                        <span class="intensity-title">متوسط</span>
+                        <span class="intensity-desc">توازن بين العمل والراحة</span>
+                      </span>
+                    </label>
+                    <label class="intensity-card">
+                      <input type="radio" name="scheduleIntensity" value="intensive">
+                      <span class="intensity-content">
+                        <span class="intensity-icon">🔥</span>
+                        <span class="intensity-title">مكثف</span>
+                        <span class="intensity-desc">إنتاجية قصوى، فترات راحة قليلة</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- أوقات العمل -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>أبكر وقت للمهام</label>
+                    <input type="time" name="earliestTaskTime" value="08:00">
+                  </div>
+                  <div class="form-group">
+                    <label>آخر وقت للمهام</label>
+                    <input type="time" name="latestTaskTime" value="22:00">
+                  </div>
+                </div>
+
+                <!-- أيام الراحة -->
+                <div class="form-group">
+                  <label>أيام الراحة (لا تجدول فيها مهام)</label>
+                  <div class="days-selector rest-days">
+                    <label class="day-checkbox"><input type="checkbox" name="restDays" value="sunday"> أحد</label>
+                    <label class="day-checkbox"><input type="checkbox" name="restDays" value="monday"> اثنين</label>
+                    <label class="day-checkbox"><input type="checkbox" name="restDays" value="tuesday"> ثلاثاء</label>
+                    <label class="day-checkbox"><input type="checkbox" name="restDays" value="wednesday"> أربعاء</label>
+                    <label class="day-checkbox"><input type="checkbox" name="restDays" value="thursday"> خميس</label>
+                    <label class="day-checkbox"><input type="checkbox" name="restDays" value="friday" checked> جمعة</label>
+                    <label class="day-checkbox"><input type="checkbox" name="restDays" value="saturday"> سبت</label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -350,8 +491,10 @@
           <div class="form-navigation">
             <button type="button" class="btn btn-secondary" id="prevStep" disabled>السابق</button>
             <button type="button" class="btn btn-primary" id="nextStep">التالي</button>
-            <button type="submit" class="btn btn-success" id="submitForm" style="display: none;">إنشاء
-              التقويم</button>
+            <button type="submit" class="btn btn-success" id="submitForm" style="display: none;">
+              <span class="btn-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+              إنشاء التقويم بالذكاء الاصطناعي
+            </button>
           </div>
         </form>
       </div>
@@ -361,7 +504,6 @@
   <div class="modal-overlay" id="eventModal">
     <div class="modal-container">
       <div class="modal-header">
-        <h2>إضافة حدث</h2>
         <button class="modal-close" id="closeEventModal" aria-label="إغلاق">
           <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
@@ -386,43 +528,128 @@
               <input type="time" id="eventEnd" name="eventEnd">
             </div>
           </div>
-          <div class="form-group">
-            <label for="eventCategory">التصنيف</label>
-            <select id="eventCategory" name="eventCategory">
-              <option value="meeting">اجتماع</option>
-              <option value="task">مهمة</option>
-              <option value="reminder">تذكير</option>
-              <option value="personal">شخصي</option>
-            </select>
-          </div>
+          
+                    <!-- Repeat Options (Added RRule Support) -->
+                    <div class="form-group">
+                      <label for="eventRepeat">التكرار</label>
+                      <select id="eventRepeat" name="eventRepeat" class="form-select">
+                        <option value="none">لا يتكرر</option>
+                        <option value="daily">يومياً</option>
+                        <option value="weekly">أسبوعياً</option>
+                        <option value="monthly">شهرياً</option>
+                        <option value="yearly">سنوياً</option>
+                        <option value="custom">مخصص...</option>
+                      </select>
+                    </div>
+                    
+                    <!-- Custom Repeat Options (Hidden by default) -->
+                    <div id="customRepeatOptions" class="custom-repeat-options" style="display: none;">
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label>كل</label>
+                          <div class="interval-input">
+                            <input type="number" id="repeatInterval" name="repeatInterval" value="1" min="1" max="99">
+                            <select id="repeatFrequency" name="repeatFrequency">
+                              <option value="DAILY">يوم</option>
+                              <option value="WEEKLY">أسبوع</option>
+                              <option value="MONTHLY">شهر</option>
+                              <option value="YEARLY">سنة</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Weekly: Days selection -->
+                      <div id="weeklyDaysContainer" class="form-group" style="display: none;">
+                        <label>في أيام</label>
+                        <div class="days-selector">
+                          <label class="day-checkbox"><input type="checkbox" name="repeatDays" value="SU"> أحد</label>
+                          <label class="day-checkbox"><input type="checkbox" name="repeatDays" value="MO"> اثنين</label>
+                          <label class="day-checkbox"><input type="checkbox" name="repeatDays" value="TU"> ثلاثاء</label>
+                          <label class="day-checkbox"><input type="checkbox" name="repeatDays" value="WE"> أربعاء</label>
+                          <label class="day-checkbox"><input type="checkbox" name="repeatDays" value="TH"> خميس</label>
+                          <label class="day-checkbox"><input type="checkbox" name="repeatDays" value="FR"> جمعة</label>
+                          <label class="day-checkbox"><input type="checkbox" name="repeatDays" value="SA"> سبت</label>
+                        </div>
+                      </div>
+                      
+                      <!-- Monthly: Day of month -->
+                      <div id="monthlyDayContainer" class="form-group" style="display: none;">
+                        <label>في يوم</label>
+                        <select id="repeatMonthDay" name="repeatMonthDay">
+                          <option value="">نفس اليوم من الشهر</option>
+                          <option value="1">1</option>
+                          <option value="15">15</option>
+                          <option value="-1">آخر يوم</option>
+                        </select>
+                      </div>
+                      
+                      <!-- End condition -->
+                      <div class="form-group">
+                        <label>ينتهي</label>
+                        <select id="repeatEndType" name="repeatEndType">
+                          <option value="never">لا ينتهي</option>
+                          <option value="count">بعد عدد مرات</option>
+                          <option value="until">في تاريخ</option>
+                        </select>
+                      </div>
+                      
+                      <div id="repeatCountContainer" class="form-group" style="display: none;">
+                        <label>عدد التكرارات</label>
+                        <input type="number" id="repeatCount" name="repeatCount" value="10" min="1" max="999">
+                      </div>
+                      
+                      <div id="repeatUntilContainer" class="form-group" style="display: none;">
+                        <label>حتى تاريخ</label>
+                        <input type="date" id="repeatUntil" name="repeatUntil">
+                      </div>
+                    </div>
+
           <div class="form-group">
             <label for="eventDescription">الوصف (اختياري)</label>
             <textarea id="eventDescription" name="eventDescription" rows="3"
               placeholder="تفاصيل إضافية حول الحدث"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary event-submit">
-            <span class="btn-icon" aria-hidden="true">
-              <i class="fa-solid fa-plus"></i>
-            </span>
-            إضافة الحدث
-          </button>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary event-submit">
+              <span class="btn-icon" aria-hidden="true">
+                <i class="fa-solid fa-plus"></i>
+              </span>
+              إضافة الحدث
+            </button>
+            <button type="button" class="btn btn-danger event-delete" id="deleteEventBtn" style="display: none;">
+              <span class="btn-icon" aria-hidden="true">
+                <i class="fa-solid fa-trash"></i>
+              </span>
+              حذف الحدث
+            </button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 
   <!-- JavaScript Modules -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/floating-ui@1.2.9/dist/floating-ui.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
-  <script src="../assets/js/core/theme.js"></script>
-  <script src="../assets/js/core/sidebar.js"></script>
-  <script src="../assets/js/components/calendar-events.js"></script>
-  <script src="../assets/js/components/calendar-chat.js"></script>
-  <!-- <script src="../assets/js/components/calendar-form-helpers.js"></script>
-  <script src="../assets/js/components/calendar-form-core.js"></script> -->
-  <script src="../assets/js/components/calendar-form.js"></script>
+  <!-- Import Map for ES Modules -->
+  <script type="importmap">
+  {
+    "imports": {
+      "@fullcalendar/core": "https://esm.sh/@fullcalendar/core@6.1.19",
+      "@fullcalendar/daygrid": "https://esm.sh/@fullcalendar/daygrid@6.1.19",
+      "@fullcalendar/timegrid": "https://esm.sh/@fullcalendar/timegrid@6.1.19",
+      "@fullcalendar/list": "https://esm.sh/@fullcalendar/list@6.1.19",
+      "@fullcalendar/rrule": "https://esm.sh/@fullcalendar/rrule@6.1.19",
+      "rrule": "https://esm.sh/rrule@2.8.1"
+    }
+  }
+  </script>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+  <script type="module" src="../assets/js/core/sidebar.js"></script>
+  <script type="module" src="../assets/js/components/calendar/CalendarEvents/CalendarEventsManager.js"></script>
+  <script type="module" src="../assets/js/components/calendar/EventForm/EventFormManager.js"></script>
+  
+  <script type="module" src="../assets/js/core/utils/auth.js"></script>
+  
 </body>
 
 </html>

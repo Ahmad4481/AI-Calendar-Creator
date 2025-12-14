@@ -5,8 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="لوحة تحكم منشئ التقويم الذكي">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  
+  <!-- Theme & App Meta -->
+  <meta name="theme-color" content="#2563EB">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="لوحة التحكم - منشئ التقويم">
+  <meta property="og:description" content="لوحة تحكم منشئ التقويم الذكي">
+  <meta property="og:locale" content="ar_SA">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  
+  <!-- Vendor CSS - Third-party libraries from npm packages -->
+  <link rel="stylesheet" href="../assets/css/vendor/vendor.css">
+  <!-- Custom vendor overrides -->
+  <link rel="stylesheet" href="../assets/css/vendor/flatpickr.css">
+  <link rel="stylesheet" href="../assets/css/vendor/choices.css">
+  
+  <!-- Base CSS -->
   <link rel="stylesheet" href="../assets/css/base/global.css">
+  <link rel="stylesheet" href="../assets/css/components/buttons.css">
+  <link rel="stylesheet" href="../assets/css/components/modal.css">
+  <link rel="stylesheet" href="../assets/css/components/calendar-events.css">
+  <link rel="stylesheet" href="../assets/css/components/event-form.css">
   <link rel="stylesheet" href="../assets/css/components/sidebar.css">
   <link rel="stylesheet" href="../assets/css/components/layout.css">
   <link rel="stylesheet" href="../assets/css/components/stats.css">
@@ -17,9 +44,22 @@
 </head>
 
 <body>
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="فتح القائمة">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  
+  <!-- Mobile Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
   <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar collapsed">
+      <!-- Mobile Close Button -->
+      <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="إغلاق القائمة">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
       <div class="sidebar-header">
         <button class="sidebar-toggle" id="sidebarToggle">
           <span></span>
@@ -27,29 +67,35 @@
           <span></span>
         </button>
         <div class="logo">
-          <div class="logo-icon" aria-hidden="true">
-            <i class="fa-solid fa-calendar-days"></i>
-          </div>
+          <img src="../assets/images/logo.svg" alt="شعار منشئ التقويم" class="logo-icon" style="background: none; box-shadow: none;">
           <h2>منشئ التقويم</h2>
         </div>
       </div>
 
       <nav class="sidebar-nav">
         <ul class="nav-list">
+          <li class="nav-item active">
+            <a href="/pages/dashborad.html" class="nav-link">
+              <span class="nav-icon" aria-hidden="true">
+                <i class="fa-solid fa-house"></i>
+              </span>
+              <span class="nav-text">الرئيسية</span>
+            </a>
+          </li>
           <li class="nav-item">
-            <a href="./calendar.html" class="nav-link" target="_self">
+            <a href="/pages/calendar.html" class="nav-link">
               <span class="nav-icon" aria-hidden="true">
                 <i class="fa-solid fa-calendar-days"></i>
               </span>
               <span class="nav-text">التقويم</span>
             </a>
           </li>
-          <li class="nav-item active">
-            <a href="#" class="nav-link">
+          <li class="nav-item">
+            <a href="/pages/settings.html" class="nav-link">
               <span class="nav-icon" aria-hidden="true">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-gear"></i>
               </span>
-              <span class="nav-text">الرئيسية</span>
+              <span class="nav-text">الإعدادات</span>
             </a>
           </li>
         </ul>
@@ -75,15 +121,9 @@
     <main class="main-content">
       <!-- Header -->
       <header class="dashboard-header">
-        <div class="header-left">
-          <h1 class="page-title">لوحة التحكم</h1>
-          <p class="page-subtitle">مرحباً بك في منشئ التقويم الذكي</p>
-        </div>
-        <div class="header-right">
-          <button class="theme-toggle" id="themeToggle">
-            <i class="fa-solid fa-moon theme-icon" aria-hidden="true"></i>
-          </button>
-        </div>
+        <button class="btn-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon theme-icon" aria-hidden="true"></i>
+        </button>
       </header>
 
       <!-- Dashboard Content -->
@@ -91,40 +131,58 @@
         <!-- Quick Stats -->
         <section class="stats-section">
           <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-icon" aria-hidden="true">
-                <i class="fa-solid fa-calendar-days"></i>
+            <div class="stat-card" data-stat="today">
+              <div class="stat-icon today" aria-hidden="true">
+                <i class="fa-solid fa-calendar-day"></i>
               </div>
               <div class="stat-content">
-                <div class="stat-number">24</div>
-                <div class="stat-label">أحداث هذا الشهر</div>
+                <div class="stat-number" id="todayTasks">0</div>
+                <div class="stat-label">مهام اليوم</div>
               </div>
             </div>
-            <div class="stat-card">
-              <div class="stat-icon" aria-hidden="true">
-                <i class="fa-solid fa-clock"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-number">8</div>
-                <div class="stat-label">أحداث اليوم</div>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon" aria-hidden="true">
+            <div class="stat-card" data-stat="completed">
+              <div class="stat-icon completed" aria-hidden="true">
                 <i class="fa-solid fa-circle-check"></i>
               </div>
               <div class="stat-content">
-                <div class="stat-number">156</div>
-                <div class="stat-label">أحداث مكتملة</div>
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">مهام مكتملة</div>
               </div>
             </div>
-            <div class="stat-card">
-              <div class="stat-icon" aria-hidden="true">
+            <div class="stat-card" data-stat="overdue">
+              <div class="stat-icon overdue" aria-hidden="true">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-number" id="overdueTasks">0</div>
+                <div class="stat-label">مهام متأخرة</div>
+              </div>
+            </div>
+            <div class="stat-card" data-stat="streak">
+              <div class="stat-icon streak" aria-hidden="true">
+                <i class="fa-solid fa-fire"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-number" id="streakDays">0</div>
+                <div class="stat-label">أيام الالتزام</div>
+              </div>
+            </div>
+            <div class="stat-card" data-stat="daily-rate">
+              <div class="stat-icon daily-rate" aria-hidden="true">
+                <i class="fa-solid fa-chart-pie"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-number" id="dailyRate">0%</div>
+                <div class="stat-label">إنجاز اليوم</div>
+              </div>
+            </div>
+            <div class="stat-card" data-stat="weekly-rate">
+              <div class="stat-icon weekly-rate" aria-hidden="true">
                 <i class="fa-solid fa-chart-line"></i>
               </div>
               <div class="stat-content">
-                <div class="stat-number">89%</div>
-                <div class="stat-label">معدل الإنجاز</div>
+                <div class="stat-number" id="weeklyRate">0%</div>
+                <div class="stat-label">إنجاز الأسبوع</div>
               </div>
             </div>
           </div>
@@ -132,20 +190,46 @@
 
         <!-- Main Dashboard Grid -->
         <div class="dashboard-grid">
+          <!-- Weekly Chart Widget -->
+          <div class="widget chart-widget">
+            <div class="widget-header">
+              <h3>الإنجاز الأسبوعي</h3>
+            </div>
+            <div class="widget-content">
+              <canvas id="weeklyChart" height="200"></canvas>
+            </div>
+          </div>
+
+          <!-- AI Suggestions Widget -->
+          <div class="widget suggestions-widget">
+            <div class="widget-header">
+              <h3><i class="fa-solid fa-wand-magic-sparkles"></i> اقتراحات الذكاء الاصطناعي</h3>
+              <button class="widget-btn" id="refreshSuggestions">
+                <i class="fa-solid fa-rotate"></i>
+              </button>
+            </div>
+            <div class="widget-content">
+              <div class="suggestions-list" id="suggestionsList">
+                <div class="suggestion-item loading">
+                  <div class="suggestion-icon"><i class="fa-solid fa-spinner fa-spin"></i></div>
+                  <div class="suggestion-text">جاري تحميل الاقتراحات...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Calendar Widget -->
           <div class="widget calendar-widget">
             <div class="widget-header">
               <h3>التقويم</h3>
               <div class="widget-actions">
-                <!-- <button class="widget-btn">اليوم</button> -->
                 <button class="widget-btn active">الشهر</button>
-                <!-- <button class="widget-btn">السنة</button> -->
               </div>
             </div>
             <div class="widget-content">
               <div class="calendar-header">
                 <button class="calendar-nav">‹</button>
-                <h4>ديسمبر 2024</h4>
+                <h4></h4>
                 <button class="calendar-nav">›</button>
               </div>
               <div class="calendar-grid">
@@ -156,7 +240,9 @@
                 <div class="calendar-day-header">الخميس</div>
                 <div class="calendar-day-header">الجمعة</div>
                 <div class="calendar-day-header">السبت</div>
-
+              </div>
+              <div class="calendar-grid-content">
+                <!-- سيتم ملء الأحداث ديناميكياً من JavaScript -->
               </div>
             </div>
           </div>
@@ -169,38 +255,6 @@
             </div>
             <div class="widget-content">
               <div class="event-list">
-                <div class="event-item">
-                  <div class="event-time">09:00</div>
-                  <div class="event-details">
-                    <div class="event-title">اجتماع فريق العمل</div>
-                    <div class="event-location">قاعة الاجتماعات</div>
-                  </div>
-                  <div class="event-status urgent"></div>
-                </div>
-                <div class="event-item">
-                  <div class="event-time">14:30</div>
-                  <div class="event-details">
-                    <div class="event-title">عرض تقديمي للعملاء</div>
-                    <div class="event-location">المكتب الرئيسي</div>
-                  </div>
-                  <div class="event-status normal"></div>
-                </div>
-                <div class="event-item">
-                  <div class="event-time">16:00</div>
-                  <div class="event-details">
-                    <div class="event-title">مراجعة المشروع</div>
-                    <div class="event-location">عن بُعد</div>
-                  </div>
-                  <div class="event-status low"></div>
-                </div>
-                <div class="event-item">
-                  <div class="event-time">18:30</div>
-                  <div class="event-details">
-                    <div class="event-title">تدريب الموظفين</div>
-                    <div class="event-location">قاعة التدريب</div>
-                  </div>
-                  <div class="event-status normal"></div>
-                </div>
               </div>
             </div>
           </div>
@@ -209,11 +263,66 @@
     </main>
   </div>
 
+  <!-- Add/Edit Event Modal -->
+  <div class="modal-overlay" id="eventModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <button class="modal-close" id="closeEventModal" aria-label="إغلاق">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="eventForm" class="event-form">
+          <div class="form-group">
+            <label for="eventTitle">عنوان الحدث</label>
+            <input type="text" id="eventTitle" name="eventTitle" placeholder="مثال: اجتماع الفريق" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventDate">التاريخ</label>
+              <input type="date" id="eventDate" name="eventDate" required>
+            </div>
+            <div class="form-group">
+              <label for="eventStart">وقت البداية</label>
+              <input type="time" id="eventStart" name="eventStart">
+            </div>
+            <div class="form-group">
+              <label for="eventEnd">وقت النهاية</label>
+              <input type="time" id="eventEnd" name="eventEnd">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="eventDescription">الوصف (اختياري)</label>
+            <textarea id="eventDescription" name="eventDescription" rows="3"
+              placeholder="تفاصيل إضافية حول الحدث"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary event-submit">
+              <span class="btn-icon" aria-hidden="true">
+                <i class="fa-solid fa-plus"></i>
+              </span>
+              إضافة الحدث
+            </button>
+            <button type="button" class="btn btn-danger event-delete" id="deleteEventBtn" style="display: none;">
+              <span class="btn-icon" aria-hidden="true">
+                <i class="fa-solid fa-trash"></i>
+              </span>
+              حذف الحدث
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript Modules -->
-  <script src="../assets/js/core/theme.js"></script>
-  <script src="../assets/js/core/sidebar.js"></script>
-  <script src="../assets/js/pages/calendar.js"></script>
-  <script src="../assets/js/pages/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Flatpickr CSS is included in vendor.css -->
+  <script type="module" src="../assets/js/core/theme.js"></script>
+  <script type="module" src="../assets/js/core/sidebar.js"></script>
+  <script type="module" src="../assets/js/components/dashboradCalendar.js"></script>
+  <script type="module" src="../assets/js/pages/dashboard.js"></script>
 </body>
 
 </html>

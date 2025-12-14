@@ -1,0 +1,46 @@
+/* ============================================
+   Choices.js Custom Styles
+   ============================================ */
+
+/* Main Container */
+.choices {
+  margin-bottom: 0 !important;
+}
+
+/* Inner Input */
+.choices__inner {
+  background: linear-gradient(135deg, var(--input-background) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: calc(var(--radius) * 1.2) !important;
+  padding: 0.8rem 1rem !important;
+  font-size: var(--text-sm) !important;
+  min-height: auto !important;
+}
+
+.choices__inner:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15) !important;
+}
+
+/* Dropdown Menu */
+.choices__list--dropdown {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-2) !important;
+}
+
+/* Dropdown Items */
+.choices__item {
+  color: var(--foreground) !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.choices__item--choice:hover {
+  background: var(--muted) !important;
+}
+
+.choices__item--choice.is-highlighted {
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}

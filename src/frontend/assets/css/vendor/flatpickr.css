@@ -1,0 +1,67 @@
+/* ============================================
+   Flatpickr Custom Styles
+   ============================================ */
+
+/* Input Field */
+.flatpickr-input {
+  background: linear-gradient(135deg, var(--input-background) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: calc(var(--radius) * 1.2) !important;
+  padding: 0.8rem 1rem !important;
+  font-size: var(--text-sm) !important;
+  color: var(--foreground) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.flatpickr-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  outline: none !important;
+}
+
+/* Calendar Container */
+.flatpickr-calendar {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-2) !important;
+  font-family: inherit !important;
+}
+
+/* Calendar Days */
+.flatpickr-day {
+  color: var(--foreground) !important;
+  border-radius: calc(var(--radius) * 0.5) !important;
+}
+
+.flatpickr-day:hover {
+  background: var(--muted) !important;
+  border-color: var(--muted) !important;
+}
+
+.flatpickr-day.selected {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.flatpickr-day.today {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+/* Time Picker */
+.flatpickr-time {
+  border-top: 1px solid var(--border) !important;
+}
+
+.flatpickr-time input {
+  background: var(--card) !important;
+  color: var(--foreground) !important;
+  border: none !important;
+}
+
+.flatpickr-time input:hover {
+  background: var(--muted) !important;
+}

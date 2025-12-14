@@ -1,0 +1,183 @@
+/* ============================================
+   FullCalendar Custom Styles
+   ============================================ */
+
+/* Calendar Widget Base */
+.calendar-widget .fc {
+  direction: rtl;
+}
+
+.calendar-widget .fc-toolbar-title {
+  font-size: var(--text-lg) !important;
+  font-weight: var(--font-weight-medium) !important;
+}
+
+/* Calendar Buttons */
+.calendar-widget .fc-button {
+  background-color: var(--muted) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--foreground) !important;
+  padding: 0.4rem 0.8rem !important;
+  font-size: var(--text-xs) !important;
+  font-weight: var(--font-weight-medium) !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  border-radius: calc(var(--radius) * 0.9);
+}
+
+.calendar-widget .fc-button:hover {
+  background-color: var(--input-background) !important;
+  color: var(--foreground) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+.calendar-widget .fc-button-primary {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border-color: var(--primary) !important;
+}
+
+.calendar-widget .fc-button-primary:hover {
+  background-color: var(--primary-foreground) !important;
+  color: var(--primary) !important;
+  border-color: var(--primary-foreground) !important;
+}
+
+.calendar-widget .fc-button:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Calendar Days */
+.calendar-widget .fc-daygrid-day.fc-day-today {
+  background-color: rgba(10, 132, 255, 0.08);
+  border-radius: var(--radius);
+}
+
+.calendar-widget .fc-daygrid-day-number {
+  font-weight: var(--font-weight-medium) !important;
+  color: var(--foreground) !important;
+  padding: 0.3rem !important;
+  border-radius: calc(var(--radius) * 0.4) !important;
+  transition: background-color var(--transition-normal) !important;
+  font-size: var(--text-sm) !important;
+}
+
+.calendar-widget .fc-daygrid-day-number:hover {
+  background-color: var(--muted) !important;
+}
+
+.calendar-widget .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  font-weight: var(--font-weight-medium) !important;
+}
+
+/* Calendar Events */
+.calendar-widget .fc-event {
+  border-radius: calc(var(--radius) * 0.5) !important;
+  border: none !important;
+  padding: 0.2rem 0.4rem !important;
+  font-size: var(--text-xs) !important;
+  font-weight: var(--font-weight-medium) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: all var(--transition-normal) !important;
+  cursor: pointer !important;
+  position: relative;
+  pointer-events: auto !important;
+}
+
+.calendar-widget .fc-event:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.calendar-widget .fc-event.event-completed {
+  opacity: 0.5 !important;
+  text-decoration: line-through !important;
+  background: var(--muted) !important;
+  color: var(--muted-foreground) !important;
+}
+
+/* ============================================
+   Event Completion Checkbox
+   ============================================ */
+.calendar-widget .event-completion-checkbox {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 1000 !important;
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+.calendar-widget .event-completion-checkbox-input {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  cursor: pointer !important;
+  accent-color: var(--primary) !important;
+  border-radius: var(--radius-sm) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transition: all var(--transition-normal) !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 1001 !important;
+}
+
+.calendar-widget .event-completion-checkbox-input:hover {
+  transform: scale(1.2) !important;
+}
+
+.calendar-widget .event-completion-checkbox-input:checked {
+  accent-color: var(--secondary) !important;
+}
+
+/* Prevent event click when clicking checkbox */
+.calendar-widget .event-completion-checkbox,
+.calendar-widget .event-completion-checkbox * {
+  pointer-events: auto !important;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .calendar-widget .fc-button {
+    padding: 0.3rem 0.6rem !important;
+    font-size: var(--text-xs) !important;
+    border-radius: calc(var(--radius) * 0.5) !important;
+  }
+  
+  .calendar-widget .fc-toolbar-title {
+    font-size: var(--text-base) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-widget {
+    min-height: 350px;
+  }
+  
+  .calendar-widget .fc-button {
+    padding: 0.25rem 0.5rem !important;
+    font-size: var(--text-xs) !important;
+    border-radius: calc(var(--radius) * 0.4) !important;
+  }
+  
+  .calendar-widget .fc-toolbar-title {
+    font-size: var(--text-sm) !important;
+  }
+}
+
+/* ============================================
+   Dark Mode Adjustments
+   ============================================ */
+.dark .calendar-widget {
+  background-color: var(--card);
+}

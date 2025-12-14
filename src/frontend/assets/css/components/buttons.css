@@ -1,0 +1,115 @@
+/* ============================================
+   Button Styles - Shared across the application
+   ============================================ */
+
+/* Base Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: none;
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  line-height: 1.5;
+}
+
+/* Button Variants */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-foreground);
+  color: var(--primary);
+}
+
+.btn-secondary {
+  background-color: var(--muted);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--input-background);
+}
+
+.btn-success {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.btn-success:hover {
+  background-color: var(--secondary-foreground);
+  color: var(--secondary);
+}
+
+.btn-danger {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+.btn-danger:hover {
+  background-color: var(--destructive-foreground);
+  color: var(--destructive);
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
+}
+
+.btn-icon {
+  font-size: 1rem;
+}
+
+.btn-icon-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.btn-icon-btn:hover {
+  background-color: var(--muted);
+}
+
+/* Button States */
+button:disabled,
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Button Interactions */
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button:active,
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Button Focus Styles */
+.btn:focus,
+button:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}

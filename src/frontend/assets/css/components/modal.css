@@ -1,0 +1,104 @@
+/* ============================================
+   Modal Styles
+   ============================================ */
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-light);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-4);
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+/* Modal Container */
+.modal-container {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: var(--container-md);
+  max-height: 90vh;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Modal Header */
+.modal-header {
+  padding: var(--space-5);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: var(--text-2xl);
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  transition: background-color var(--transition-normal);
+}
+
+.modal-close:hover {
+  background-color: var(--muted);
+}
+
+.modal-close:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Modal Body */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-6);
+  max-height: calc(90vh - 120px);
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+  .modal-container {
+    margin: var(--space-4);
+    max-height: calc(100vh - var(--space-8));
+    overflow: visible;
+  }
+  
+  .modal-body {
+    padding: var(--space-4);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================
+   Dark Mode Adjustments
+   ============================================ */
+.dark .modal-overlay {
+  background-color: var(--overlay-dark);
+}

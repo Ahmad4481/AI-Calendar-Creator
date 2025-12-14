@@ -1,0 +1,193 @@
+/* ============================================
+   CSS Variables - Design System
+   ============================================ */
+
+:root {
+  /* Typography */
+  --font-size: 16px;
+  --text-1x3: 1.875rem;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  
+  /* Border Radius */
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-2: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Layout */
+  --container-md: 800px;
+  
+  /* Overlay Colors */
+  --overlay-light: rgba(0, 0, 0, 0.5);
+  --overlay-dark: rgba(0, 0, 0, 0.7);
+  
+  /* ============================================
+     Light Theme Colors - Productivity Theme
+     ============================================ */
+  
+  /* Background & Foreground */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #ffffff;
+  --card-foreground: #0F172A;
+  --popover: #ffffff;
+  --popover-foreground: #1E293B;
+  
+  /* Primary Colors - Calm Blue (Trust & Productivity) */
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --primary-light: #DBEAFE;
+  --primary-foreground: #ffffff;
+  
+  /* Secondary Colors - Success Green (Completion & Achievement) */
+  --secondary: #22C55E;
+  --secondary-hover: #16A34A;
+  --secondary-light: #DCFCE7;
+  --secondary-foreground: #ffffff;
+  
+  /* Accent Colors - Warm Orange (Urgency & Highlights) */
+  --accent: #F97316;
+  --accent-hover: #EA580C;
+  --accent-light: #FFEDD5;
+  --accent-foreground: #ffffff;
+  
+  /* Destructive Colors - Red (Warnings & Deletions) */
+  --destructive: #EF4444;
+  --destructive-hover: #DC2626;
+  --destructive-light: #FEE2E2;
+  --destructive-foreground: #ffffff;
+  
+  /* Neutral Colors */
+  --muted: #E2E8F0;
+  --muted-hover: #CBD5E1;
+  --muted-foreground: #64748B;
+  --border: rgba(15, 23, 42, 0.08);
+  --border-hover: rgba(15, 23, 42, 0.16);
+  
+  /* Input Colors */
+  --input: transparent;
+  --input-background: #F1F5F9;
+  --input-focus: #EFF6FF;
+  --switch-background: #E2E8F0;
+  
+  /* Focus Ring */
+  --ring: #2563EB;
+  --ring-offset: 2px;
+  
+  /* Chart Colors */
+  --chart-1: #2563EB;
+  --chart-2: #22C55E;
+  --chart-3: #F97316;
+  --chart-4: #EF4444;
+  --chart-5: #8B5CF6;
+  
+  /* Sidebar Colors */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #2563EB;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #E2E8F0;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: rgba(15, 23, 42, 0.06);
+  --sidebar-ring: #2563EB;
+  
+  /* Login Background */
+  --login-background: linear-gradient(135deg, #2563EB 0%, #22C55E 100%);
+}
+
+/* ============================================
+   Dark Theme Colors - Productivity Theme
+   ============================================ */
+.dark {
+  /* Background & Foreground */
+  --background: #0F172A;
+  --foreground: #E2E8F0;
+  --card: #1E293B;
+  --card-foreground: #E2E8F0;
+  --popover: #1E293B;
+  --popover-foreground: #E2E8F0;
+  
+  /* Primary Colors */
+  --primary: #3B82F6;
+  --primary-hover: #2563EB;
+  --primary-light: #1E3A5F;
+  --primary-foreground: #ffffff;
+  
+  /* Secondary Colors */
+  --secondary: #22C55E;
+  --secondary-hover: #16A34A;
+  --secondary-light: #14532D;
+  --secondary-foreground: #ffffff;
+  
+  /* Accent Colors */
+  --accent: #FB923C;
+  --accent-hover: #F97316;
+  --accent-light: #431407;
+  --accent-foreground: #ffffff;
+  
+  /* Destructive Colors */
+  --destructive: #F87171;
+  --destructive-hover: #EF4444;
+  --destructive-light: #450A0A;
+  --destructive-foreground: #ffffff;
+  
+  /* Neutral Colors */
+  --muted: #1E293B;
+  --muted-hover: #334155;
+  --muted-foreground: #94A3B8;
+  --border: rgba(148, 163, 184, 0.2);
+  --border-hover: rgba(148, 163, 184, 0.4);
+  
+  /* Input Colors */
+  --input-background: #1E293B;
+  --input-focus: #1E3A5F;
+  --switch-background: #334155;
+  
+  /* Sidebar Colors */
+  --sidebar: #0F172A;
+  --sidebar-foreground: #E2E8F0;
+  --sidebar-primary: #3B82F6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1E293B;
+  --sidebar-accent-foreground: #E2E8F0;
+  --sidebar-border: rgba(148, 163, 184, 0.15);
+  --sidebar-ring: #3B82F6;
+}

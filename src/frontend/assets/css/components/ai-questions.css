@@ -1,0 +1,621 @@
+/* AI Questions & Form Steps Styles */
+
+.step-description {
+  color: var(--muted-foreground);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ============================================
+   Days Selector (Used in multiple steps)
+   ============================================ */
+.days-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.day-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.day-checkbox:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.day-checkbox:has(input:checked) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.day-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* ============================================
+   Unavailable Times (Step 1)
+   ============================================ */
+.unavailable-times,
+.fixed-tasks,
+.goals {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.unavailable-time-item,
+.fixed-task-item,
+.goal-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  position: relative;
+}
+
+.unavailable-time-item:hover,
+.fixed-task-item:hover,
+.goal-item:hover {
+  border-color: var(--primary-light);
+}
+
+/* ============================================
+   Form Layout Helpers
+   ============================================ */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* ============================================
+   AI Questions Container (Step 4)
+   ============================================ */
+.ai-questions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ai-question-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+}
+
+.question-label {
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.question-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+
+.option-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.option-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.option-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 0.5rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  transition: all 0.2s ease;
+  min-height: 70px;
+}
+
+.option-card:hover .option-content {
+  border-color: var(--primary-light);
+  background: var(--primary-light);
+}
+
+.option-card input[type="radio"]:checked + .option-content {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.option-card input[type="radio"]:checked + .option-content .option-text {
+  color: var(--primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.option-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.option-text {
+  font-size: 0.8rem;
+  color: var(--foreground);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ============================================
+   Personal Info (Step 5)
+   ============================================ */
+.personal-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sleep-time-inputs {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.time-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sub-label {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Schedule Preferences (Step 6)
+   ============================================ */
+.schedule-preferences-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.preference-section {
+  margin-bottom: 1rem;
+}
+
+.preference-label {
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.intensity-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.intensity-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.intensity-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.intensity-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  transition: all 0.2s ease;
+}
+
+.intensity-card:hover .intensity-content {
+  border-color: var(--primary-light);
+  background: var(--primary-light);
+}
+
+.intensity-card input[type="radio"]:checked + .intensity-content {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.intensity-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.intensity-title {
+  font-weight: var(--font-weight-semibold);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--foreground);
+}
+
+.intensity-desc {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  line-height: 1.4;
+}
+
+.rest-days {
+  justify-content: center;
+}
+
+/* ============================================
+   Session Duration Toggle
+   ============================================ */
+.goal-divisible-select {
+  min-width: 100px;
+}
+
+.session-duration-group {
+  transition: opacity 0.2s ease;
+}
+
+/* ============================================
+   Goal Input with AI Button
+   ============================================ */
+.goal-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.goal-input-wrapper input {
+  flex: 1;
+}
+
+.btn-ai {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-ai:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-ai:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ai i {
+  font-size: 1rem;
+}
+
+/* ============================================
+   Goal AI Questions Section
+   ============================================ */
+.goal-ai-questions {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+}
+
+.ai-questions-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.ai-icon {
+  font-size: 1.25rem;
+}
+
+.ai-loading {
+  color: var(--muted-foreground);
+  font-size: 0.85rem;
+  margin-right: auto;
+}
+
+.ai-loading i {
+  margin-left: 0.25rem;
+}
+
+.goal-header {
+  margin-bottom: 0.5rem;
+}
+
+.ai-generated-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ai-generated-questions .ai-question-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  animation: fadeInUp 0.3s ease forwards;
+  opacity: 1 !important; /* Override the general opacity: 0 rule */
+}
+
+.ai-generated-questions .question-label {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.ai-generated-questions .question-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ai-generated-questions .option-card {
+  flex: 1;
+  min-width: 120px;
+}
+
+.ai-generated-questions .option-content {
+  padding: 0.6rem 0.75rem;
+  min-height: auto;
+}
+
+.ai-generated-questions .option-text {
+  font-size: 0.8rem;
+}
+
+/* Dark mode for goal AI questions */
+.dark .goal-ai-questions {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+  border-color: var(--primary);
+}
+
+.dark .ai-questions-header {
+  color: var(--primary-foreground);
+}
+
+.dark .ai-generated-questions .ai-question-item {
+  background: var(--card);
+  border-color: var(--border);
+}
+
+/* ============================================
+   Dark Mode Adjustments
+   ============================================ */
+.dark .option-card:hover .option-content,
+.dark .intensity-card:hover .intensity-content {
+  background: var(--primary-light);
+}
+
+.dark .option-card input[type="radio"]:checked + .option-content,
+.dark .intensity-card input[type="radio"]:checked + .intensity-content {
+  background: var(--primary-light);
+}
+
+.dark .day-checkbox:has(input:checked) {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+.unavailable-time-item,
+.fixed-task-item,
+.goal-item {
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+/* AI questions in main container (Step 4) - NOT in ai-generated-questions */
+.ai-questions-container > .ai-question-item {
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+.unavailable-time-item:nth-child(1),
+.fixed-task-item:nth-child(1),
+.goal-item:nth-child(1) { animation-delay: 0.1s; }
+
+.unavailable-time-item:nth-child(2),
+.fixed-task-item:nth-child(2),
+.goal-item:nth-child(2) { animation-delay: 0.2s; }
+
+.unavailable-time-item:nth-child(3),
+.fixed-task-item:nth-child(3),
+.goal-item:nth-child(3) { animation-delay: 0.3s; }
+
+/* AI questions in main container delays */
+.ai-questions-container > .ai-question-item:nth-child(1) { animation-delay: 0.1s; }
+.ai-questions-container > .ai-question-item:nth-child(2) { animation-delay: 0.2s; }
+.ai-questions-container > .ai-question-item:nth-child(3) { animation-delay: 0.3s; }
+.ai-questions-container > .ai-question-item:nth-child(4) { animation-delay: 0.4s; }
+.ai-questions-container > .ai-question-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* AI generated questions (inside goals) - show immediately */
+.ai-generated-questions .ai-question-item:nth-child(1) { animation-delay: 0.05s; }
+.ai-generated-questions .ai-question-item:nth-child(2) { animation-delay: 0.1s; }
+.ai-generated-questions .ai-question-item:nth-child(3) { animation-delay: 0.15s; }
+.ai-generated-questions .ai-question-item:nth-child(4) { animation-delay: 0.2s; }
+.ai-generated-questions .ai-question-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Submit Button
+   ============================================ */
+#submitForm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#submitForm .btn-icon {
+  font-size: 1rem;
+}
+
+/* Loading state */
+.ai-generating {
+  position: relative;
+  pointer-events: none;
+}
+
+.ai-generating::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+  .question-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .intensity-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .option-content {
+    padding: 0.75rem 0.5rem;
+    min-height: 65px;
+  }
+  
+  .option-icon {
+    font-size: 1.25rem;
+  }
+  
+  .option-text {
+    font-size: 0.75rem;
+  }
+  
+  .days-selector {
+    justify-content: center;
+  }
+  
+  .day-checkbox {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .sleep-time-inputs {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-question-item,
+  .unavailable-time-item,
+  .fixed-task-item,
+  .goal-item {
+    padding: 1rem;
+  }
+  
+  .question-label {
+    font-size: 0.95rem;
+  }
+  
+  .intensity-content {
+    padding: 1rem 0.75rem;
+  }
+  
+  .intensity-icon {
+    font-size: 1.5rem;
+  }
+  
+  .intensity-title {
+    font-size: 0.9rem;
+  }
+}
+

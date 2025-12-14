@@ -22,12 +22,12 @@ class ThemeManager {
   setTheme(theme) {
     this.currentTheme = theme;
     document.body.classList.toggle('dark', theme === 'dark');
-    
     // Update theme icon
     const themeIcon = document.querySelector('.theme-icon');
     if (themeIcon) {
       themeIcon.classList.remove('fa-sun', 'fa-moon');
       themeIcon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
+      console.log(themeIcon);
     }
     
     // Save theme preference
